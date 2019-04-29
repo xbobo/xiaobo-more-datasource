@@ -1,0 +1,40 @@
+
+spring.datasource.druid.initial-size=5
+spring.datasource.druid.min-idle=5
+spring.datasource.druid.max-active=20
+# 配置获取连接等待超时的时间
+spring.datasource.druid.max-wait=60000
+# 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+spring.datasource.druid.time-between-eviction-runs-millis=60000
+# 配置一个连接在池中最小生存的时间，单位是毫秒
+spring.datasource.druid.min-evictable-idle-time-millis=300000
+spring.datasource.druid.validation-query=SELECT 1 FROM DUAL
+spring.datasource.druid.test-while-idle=true
+spring.datasource.druid.test-on-borrow=false
+spring.datasource.druid.test-on-return=false
+# 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+spring.datasource.druid.filters=stat,wall,log4j
+spring.datasource.druid.filters.stat.log-slow-sql=true
+spring.datasource.druid.filters.stat.slow-sql-millis=2000
+spring.datasource.druid.filters.stat.merge-sql=true
+spring.datasource.druid.filters.commons-log.connection-logger-name=stat,wall,log4j
+# WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
+spring.datasource.druid.web-stat-filter.
+spring.datasource.druid.web-stat-filter.enabled=true
+spring.datasource.druid.web-stat-filter.url-pattern=/*
+spring.datasource.druid.web-stat-filter.exclusions:-*.js,-*.gif,-*.jpg,-*.bmp,-*.png,-*.css,-*.ico,-/druid/*
+  
+spring.datasource.druid.web-stat-filter.session-stat-enable=true
+spring.datasource.druid.web-stat-filter.session-stat-max-count=10
+spring.datasource.druid.web-stat-filter.principal-cookie-name:
+spring.datasource.druid.web-stat-filter.principal-session-name:
+spring.datasource.druid.web-stat-filter.profile-enable:
+spring.datasource.druid.stat-view-servlet.
+spring.datasource.druid.stat-view-servlet.enabled=true
+spring.datasource.druid.stat-view-servlet.url-pattern=/druid/*
+spring.datasource.druid.stat-view-servlet.reset-enable=false
+spring.datasource.druid.stat-view-servlet.login-username=janson
+spring.datasource.druid.stat-view-servlet.login-password=abc.123
+spring.datasource.druid.stat-view-servlet.allow=
+spring.datasource.druid.stat-view-servlet.deny=
+spring.datasource.druid.aop-patterns=com.puxinwangxiao.erp.core.service.*
