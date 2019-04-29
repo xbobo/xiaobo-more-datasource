@@ -1,0 +1,2 @@
+2019-04-20 18:55:44.158  WARN 5184 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[org.xiaobo.flowable]' package. Please check your configuration.
+2019-04-20 18:56:17.000  WARN 10568 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[org.xiaobo.flowable]' package. Please check your configuration.
