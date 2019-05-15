@@ -14,8 +14,8 @@ public class Test {
 
     public static void main(String[] args) {
 	UserVO userVO = new UserVO();
-	userVO.setUserNickname("1111");
-	userVO.setUserId(1L);
+	userVO.setUserNickname("陈剑");
+	userVO.setUserId(19027299799441408L);
 	// 生成token
 	String jwtToken = JwtUtil.createJWT(userVO.getUserNickname(), userVO.getUserId().toString(), clientId, name,
 		expiresSecond * 1000, base64Secret);

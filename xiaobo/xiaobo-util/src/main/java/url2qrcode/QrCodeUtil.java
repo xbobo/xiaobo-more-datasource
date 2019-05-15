@@ -1,5 +1,6 @@
 package url2qrcode;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +27,9 @@ public class QrCodeUtil {
         String path = FileSystemView.getFileSystemView().getHomeDirectory() + File.separator + "testQrcode";
         String fileName = "temp.jpg";
         createQrCode(url, path, fileName);
+        BufferedImage bufferedImage = createQrCodeBuferedImg(url);
+        Graphics2D createGraphics = bufferedImage.createGraphics();
+        
     }
  
     public static String createQrCode(String url, String path, String fileName) {
@@ -38,6 +42,17 @@ public class QrCodeUtil {
                 writeToFile(bitMatrix, "jpg", file);
                 System.out.println("搞定：" + file);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static BufferedImage createQrCodeBuferedImg(String url) {
+        try {
+            Map<EncodeHintType, String> hints = new HashMap<>();
+            hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+            BitMatrix bitMatrix = new MultiFormatWriter().encode(url, BarcodeFormat.QR_CODE, 400, 400, hints);
+           return toBufferedImage(bitMatrix);
  
         } catch (Exception e) {
             e.printStackTrace();
