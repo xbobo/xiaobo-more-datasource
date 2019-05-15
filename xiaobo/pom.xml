@@ -32,6 +32,9 @@
 		<module>xiaobo-flowable</module>
     <module>xiaobo-util</module>
     <module>xiaobo-generator</module>
+    <module>xiaobo-vue</module>
+    <module>xiaobo-wechat</module>
+    <module>xiaobo-websocket</module>
   </modules>
 	<dependencies>
 		<dependency>
