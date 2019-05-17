@@ -16,6 +16,11 @@ import cn.hutool.core.img.Img;
 import weixin.nati.UrlToQrcode;
 
 public class BufferImageUtil {
+//	<dependency>
+//    <groupId>cn.hutool</groupId>
+//    <artifactId>hutool-all</artifactId>
+//    <version>4.5.7</version>
+//</dependency>
 	public static void main(String[] args) throws Exception {
 		BufferedImage destImage = new BufferedImage(832, 1250, BufferedImage.TYPE_INT_RGB);
 		initBackageColor(destImage);
