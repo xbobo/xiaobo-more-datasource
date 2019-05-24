@@ -16,6 +16,8 @@ public class UserVO {
     private String userAvatar;
     @JsonProperty(value = "user_grade")
     private String userGrade;
+ 
+    private String [] dnsNickName ;
 
 //    public static UserVO get(StudentDO studentDO){
 //        if(studentDO==null){
@@ -41,5 +43,4 @@ public class UserVO {
 //        }
 //        return userVO;
 //    }
-
 }

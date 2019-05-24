@@ -62,4 +62,39 @@ public class JwtUtil {
         //生成JWT
         return builder.compact();
     }
+    
+    /**
+     * 构建jwt
+     */
+    public static String createJWT(String name, String userId,String mobile,String[] dnsNickName,
+                                   String audience, String issuer, long tTLMillis, String base64Security)
+    {
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+
+        //生成签名密钥
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(base64Security);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+        //添加构成JWT的参数
+        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
+                .claim("name", name)
+                .claim("userid", userId)
+                .claim("dnsNickName", dnsNickName)
+                .claim("mobile", mobile)
+                .setIssuer(issuer)
+                .setAudience(audience)
+                .signWith(signatureAlgorithm, signingKey);
+        //添加Token过期时间
+        if (tTLMillis >= 0) {
+            long expMillis = nowMillis + tTLMillis;
+            Date exp = new Date(expMillis);
+            builder.setExpiration(exp).setNotBefore(now);
+        }
+
+        //生成JWT
+        return builder.compact();
+    }
 }

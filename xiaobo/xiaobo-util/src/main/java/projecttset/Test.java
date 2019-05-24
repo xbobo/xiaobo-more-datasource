@@ -6,16 +6,16 @@ import java.util.Map;
 
 public class Test {
  
-    static String clientId = "098f6bcd4621d373c2134e832627b4f6";
-    static String base64Secret = "Fqtt1LcUz8bkDVKH0CO+b91EvtH60E7vweYGGN4PgxE=";
-    static String name = "restapiuser";  
-    static Integer expiresSecond = 2592000;
-    static String salt = "0oFt5SX4ONB6wPICwn";
+    static String clientId = "1098f6bcd4621d373c2134e832627b4f6";
+    static String base64Secret = "1Fqtt1LcUz8bkDVKH0CO+b91EvtH60E7vweYGGN4PgxE=";
+    static String name = "1restapiuser";  
+    static Integer expiresSecond = 12592000;
+    static String salt = "10oFt5SX4ONB6wPICwn";
 
     public static void main(String[] args) {
 	UserVO userVO = new UserVO();
-	userVO.setUserNickname("陈剑");
-	userVO.setUserId(19027299799441408L);
+	userVO.setUserNickname("");
+	userVO.setUserId(123L);
 	// 生成token
 	String jwtToken = JwtUtil.createJWT(userVO.getUserNickname(), userVO.getUserId().toString(), clientId, name,
 		expiresSecond * 1000, base64Secret);
