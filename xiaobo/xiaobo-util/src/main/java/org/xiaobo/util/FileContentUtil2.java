@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author xiaobo
  * @date 2019年4月25日
  */
-public class FileContentUtil {
+public class FileContentUtil2 {
 	public static String lineFeed = "\r\n";
 	
 	public static String PACKAGE_PATH = "org";
@@ -52,7 +52,7 @@ public class FileContentUtil {
 				+ "public interface " + fileStart
 				+ "Repository {" + lineFeed + "" + lineFeed + "	@InsertProvider(type = " + fileStart
 				+ "Provider.class,method = \"save\")" + lineFeed
-				+ "	@Options(useGeneratedKeys = true,keyColumn = \""+primaryKeyColumnName+"\",keyProperty = \""+primaryKeyColumnName+"\")" + lineFeed
+				+ "	@Options(useGeneratedKeys = true,keyColumn = \""+primaryKeyColumnName+"\",keyProperty = \""+transformFieldName(primaryKeyColumnName)+"\")" + lineFeed
 				+ "	int save(" + entity + "  entity);" + lineFeed + "" + lineFeed + "	@UpdateProvider(type = " + fileStart
 				+ "Provider.class,method = \"update\")" + lineFeed + "	int update(" + entity + " entity);" + lineFeed + ""
 				+ lineFeed + "	@DeleteProvider(type = " + fileStart + "Provider.class,method = \"remove\")" + lineFeed
@@ -62,7 +62,7 @@ public class FileContentUtil {
 		for (Entry<String, LinkedHashMap<String, String>> entry : map.entrySet()) {
 			for (Entry<String, String> innterEntry : entry.getValue().entrySet()) {
 				repositoryStr += "		@Result(column =\"" + entry.getKey() + "\" ,property = \""
-						+ innterEntry.getKey() + "\",jdbcType = JdbcType." + innterEntry.getValue() + ")," + lineFeed;
+						+ transformFieldName(innterEntry.getKey()) + "\",jdbcType = JdbcType." + innterEntry.getValue() + ")," + lineFeed;
 			}
 		}
 		// 去除逗号
@@ -110,7 +110,7 @@ public class FileContentUtil {
 				+ "" + lineFeed ;
 		String baseSave= "	@InsertProvider(type = " + fileStart
 				+ "Provider.class,method = \"save\")" + lineFeed
-				+ "	@Options(useGeneratedKeys = true,keyColumn = \""+primaryKeyColumnName+"\",keyProperty = \""+primaryKeyColumnName+"\")" + lineFeed
+				+ "	@Options(useGeneratedKeys = true,keyColumn = \""+primaryKeyColumnName+"\",keyProperty = \""+transformFieldName(primaryKeyColumnName)+"\")" + lineFeed
 				+ "	int save(" + entity + "  entity);" + lineFeed + "" 
 				+ lineFeed ;
 		String baseUpdate= "	@UpdateProvider(type = " + fileStart+ "Provider.class,method = \"update\")" + lineFeed 
@@ -124,17 +124,17 @@ public class FileContentUtil {
 				+ lineFeed;
 		StringBuffer saveItemBuffer=new StringBuffer();
 		StringBuffer updateItemBuffer=new StringBuffer();
+		
 		StringBuffer saveFieldBuffer=new StringBuffer();
 		
 		for (Entry<String, LinkedHashMap<String, String>> entry : map.entrySet()) {
 			for (Entry<String, String> innterEntry : entry.getValue().entrySet()) {
 				saveFieldBuffer.append(" "+entry.getKey()+",");
-				
 				baseFind += "		@Result(column =\"" + entry.getKey() + "\" ,property = \""
 						+ innterEntry.getKey() + "\",jdbcType = JdbcType." + innterEntry.getValue() + ")," + lineFeed;
 				
 				//saveItemBuffer 
-				saveItemBuffer.append("			+\"#{item."+entry.getKey()+"} ,\""+ lineFeed);
+				saveItemBuffer.append("			+\"#{item."+transformFieldName(entry.getKey())+"} ,\""+ lineFeed);
 				//updateItemBuffer
 //				+ \"<if test='item.content != null and item.content.length>0 '>\"
 //	              + \" `content` = #{item.content} ,\"
@@ -143,12 +143,12 @@ public class FileContentUtil {
 				if(primaryKeyColumnName.equals(entry.getKey())) {
 					//TODO 是主键 不赋值
 				}else if(javaType.equals(TypeEnum.JavaType.getJavaType(""))){
-					updateItemBuffer.append("			+ \"<if test='item."+entry.getKey()+" != null and item."+entry.getKey()+".length>0 '>\""+ lineFeed);
-					updateItemBuffer.append("			+ \" `"+entry.getKey()+"` = #{item."+entry.getKey()+"} ,\""+ lineFeed);
+					updateItemBuffer.append("			+ \"<if test='item."+transformFieldName(entry.getKey())+" != null and item."+transformFieldName(entry.getKey())+".length>0 '>\""+ lineFeed);
+					updateItemBuffer.append("			+ \" `"+entry.getKey()+"` = #{item."+transformFieldName(entry.getKey())+"} ,\""+ lineFeed);
 					updateItemBuffer.append("			+ \"</if>\""+ lineFeed);
 				}else {
-					updateItemBuffer.append("			+ \"<if test='item."+entry.getKey()+" != null '>\""+ lineFeed);
-					updateItemBuffer.append("			+ \" `"+entry.getKey()+"` = #{item."+entry.getKey()+"} ,\""+ lineFeed);
+					updateItemBuffer.append("			+ \"<if test='item."+transformFieldName(entry.getKey())+" != null '>\""+ lineFeed);
+					updateItemBuffer.append("			+ \" `"+entry.getKey()+"` = #{item."+transformFieldName(entry.getKey())+"} ,\""+ lineFeed);
 					updateItemBuffer.append("			+ \"</if>\""+ lineFeed);
 				}
 				
@@ -183,7 +183,7 @@ public class FileContentUtil {
 	    saveBatchbuffer.append("			+\";\" "+ lineFeed);
 	    saveBatchbuffer.append("	+\"</script>\" "+ lineFeed);
 		saveBatchbuffer.append("	})"+ lineFeed);
-		saveBatchbuffer.append("	@Options(useGeneratedKeys = true,keyColumn = \""+primaryKeyColumnName+"\",keyProperty = \""+primaryKeyColumnName+"\")"+ lineFeed);
+		saveBatchbuffer.append("	@Options(useGeneratedKeys = true,keyColumn = \""+primaryKeyColumnName+"\",keyProperty = \""+transformFieldName(primaryKeyColumnName)+"\")"+ lineFeed);
 		saveBatchbuffer.append("	int saveBatch(List<" + fileStart + "> list);"+ lineFeed);
 		
 		//updateBatch
@@ -202,7 +202,7 @@ public class FileContentUtil {
 		//System.out.println(updateItemStr.substring(0, updateItemStr.length()-18));
 		updateBatchbuffer.append(updateItemStr.substring(0, updateItemStr.length()-18)+" \"  + \"</if>\" "+ lineFeed);
 	    updateBatchbuffer.append("			+ \"</set>\""+ lineFeed);
-	    updateBatchbuffer.append("			+ \" WHERE "+primaryKeyColumnName+" = #{item."+primaryKeyColumnName+"}   \""+ lineFeed);
+	    updateBatchbuffer.append("			+ \" WHERE "+primaryKeyColumnName+" = #{item."+transformFieldName(primaryKeyColumnName)+"}   \""+ lineFeed);
 	    updateBatchbuffer.append("			+\"</foreach>\""+ lineFeed);
 	    updateBatchbuffer.append("		+\"</script>\" "+ lineFeed);
 		updateBatchbuffer.append("	})"+ lineFeed);
@@ -248,6 +248,31 @@ public class FileContentUtil {
 		}
 		return buffer.toString();
 	}
+	
+	/**
+	 *   字段转换 user_id --> userId
+	 * @param name
+	 * @return
+	 */
+	public static String transformFieldName(String name) {
+		StringBuffer buffer = new StringBuffer();
+		if (name.contains("_")) {
+			String[] split = name.toLowerCase().split("_");
+			for (int i=0;i<split.length;i++){ 
+				String str = split[i];
+				if(StringUtils.isNotEmpty(str)) {
+					if(i>0) {
+						buffer.append(str.substring(0, 1).toUpperCase() + str.substring(1));
+					}else {
+						buffer.append(str);
+					}
+				}
+			}
+		}else {
+			buffer.append(name);
+		}
+		return buffer.toString();
+	}
 
 	/**
 	 * 实体生成
@@ -270,9 +295,9 @@ public class FileContentUtil {
 			String comment = commentmap.get(entry.getKey());
 			entityStr +=lineFeed;
 			if(StringUtils.isNotEmpty(comment)) {
-				entityStr += "	private " + entry.getValue() + " " + entry.getKey() + " ; //"+comment+" " + lineFeed;
+				entityStr += "	private " + entry.getValue() + " " + transformFieldName(entry.getKey()) + " ; //"+comment+" " + lineFeed;
 			}else {
-				entityStr += "	private " + entry.getValue() + " " + entry.getKey() + " ; " + lineFeed;
+				entityStr += "	private " + entry.getValue() + " " + transformFieldName(entry.getKey()) + " ; " + lineFeed;
 			}
 		}
 		entityStr += "}";
@@ -317,6 +342,8 @@ public class FileContentUtil {
 
 		for (Entry<String, String> entry : map.entrySet()) {
 			String key = entry.getKey();
+			key = transformFieldName(entry.getKey());
+			System.out.println(key);
 			if (key.length() > 1) {
 				key = key.substring(0, 1).toUpperCase() + key.substring(1);
 			} else {
@@ -329,15 +356,15 @@ public class FileContentUtil {
 				cond += "		if(entity.get" + key + "() != null ) {" + lineFeed;
 			}
 			saveBuffer.append(cond);
-			saveBuffer.append("			sql.VALUES(\"" + entry.getKey() + "\", \"#{" + entry.getKey() + "}\");" + lineFeed);
+			saveBuffer.append("			sql.VALUES(\"" + entry.getKey() + "\", \"#{" + transformFieldName(entry.getKey()) + "}\");" + lineFeed);
 			saveBuffer.append("		}" + lineFeed);
 
 			updateBuffer.append(cond);
-			updateBuffer.append("			sql.SET(\"" + entry.getKey() + " =#{" + entry.getKey() + "}\");" + lineFeed);
+			updateBuffer.append("			sql.SET(\"" + entry.getKey() + " =#{" + transformFieldName(entry.getKey()) + "}\");" + lineFeed);
 			updateBuffer.append("		}" + lineFeed);
 
 			whereBuffer.append(cond);
-			whereBuffer.append("			sql.WHERE(\" " + entry.getKey() + " = #{" + entry.getKey() + "}\");" + lineFeed);
+			whereBuffer.append("			sql.WHERE(\" " + entry.getKey() + " = #{" + transformFieldName(entry.getKey()) + "}\");" + lineFeed);
 			whereBuffer.append("		}" + lineFeed);
 		}
 		saveBuffer.append("		return sql.toString();" + lineFeed);
@@ -399,10 +426,14 @@ public class FileContentUtil {
 		// System.out.println(transformTableName("user"));
 
 		// provider test
-		LinkedHashMap<String,String> map=new LinkedHashMap<String, String>();
-		map.put("id", "Long");
-		map.put("age", "Integer");
-		map.put("name", "String");
-		FileUtil.createJavaFile("UserProvider", providerContent("user","id,name,age",map));
+//		LinkedHashMap<String,String> map=new LinkedHashMap<String, String>();
+//		map.put("id", "Long");
+//		map.put("age", "Integer");
+//		map.put("name", "String");
+//		FileUtil.createJavaFile("UserProvider", providerContent("user","id,name,age",map));
+		String name="user___";
+		
+		String transformFieldName = transformFieldName(name);
+		System.out.println(transformFieldName);
 	}
 }

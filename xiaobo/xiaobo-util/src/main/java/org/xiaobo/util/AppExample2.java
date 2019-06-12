@@ -4,7 +4,7 @@ package org.xiaobo.util;
  * @author xiaobo
  * @date 2019年4月25日
  */
-public class AppExample {
+public class AppExample2 {
 
 	public static void main(String[] args) throws Exception {
 		
@@ -12,7 +12,7 @@ public class AppExample {
 		//驱动com.mysql.cj.jdbc.Driver  com.mysql.jdbc.Driver
 		prop.setDriver_class_name("com.mysql.cj.jdbc.Driver");
 		// jdbc 链接
-		prop.setUrl("jdbc:mysql://localhost:3306/xiaobo-base?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
+		prop.setUrl("jdbc:mysql://localhost:3306/xiabo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
 		// 账号
 		prop.setUser_name("root");
 		// 密码
@@ -32,13 +32,13 @@ public class AppExample {
 		//sql 模板 是否创建
 		prop.setSql_flag(true);
 		//生成    数据库表数组   可不设
-		prop.setExclusive_tables(new String[] {"user"});
+		prop.setExclusive_tables(new String[] {"account"});
 		//生成    数据库表数组   可不设
-		prop.setInclude_tables(new String[] {"logistics"});
+		prop.setInclude_tables(new String[] {"demo"});
 		
 		System.out.println("连接数据库wei:"+prop.getLibrary());
 		
-		JDBCUtil.buildJavaFile(prop);
+		JDBCUtil2.buildJavaFile(prop);
 		
 //		System.out.println(FileUtil.getCurrentPath());
 //		System.out.println(FileUtil.getCurrentRootPath());

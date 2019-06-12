@@ -19,13 +19,13 @@ import com.alibaba.fastjson.JSONObject;
  * @author xiaobo
  * @date 2019年4月25日
  */
-public class JDBCUtil {
+public class JDBCUtil2 {
 
 	public static void buildJavaFile(JDBCProperties prop) throws Exception {
 		
-		FileUtil.FILE_PATH = prop.getFile_path();
+		FileUtil2.FILE_PATH = prop.getFile_path();
 		
-		FileContentUtil.PACKAGE_PATH=prop.getPackage_path();
+		FileContentUtil2.PACKAGE_PATH=prop.getPackage_path();
 		
 		List<String> inncludeList = Arrays.asList(prop.getInclude_tables());
 		
@@ -130,32 +130,32 @@ public class JDBCUtil {
 				}
 				cloumns = cloumns.substring(0, cloumns.length() - 1)+" ";
 				//String string = query_clomns.toString();
-				String entityName = FileContentUtil.transformTableName(tableName);
+				String entityName = FileContentUtil2.transformTableName(tableName);
 				System.out.println(" 表格 " + tableName + " 转换 start...");
 
 				// 创建Java 实体
 				if(prop.isEntity_flag()) {
-					FileUtil.createJavaFile(entityName, FileContentUtil.entityContent(tableName, map, commentmap));
+					FileUtil2.createJavaFile(entityName, FileContentUtil2.entityContent(tableName, map, commentmap));
 				}
 				// 创建 provider
 				if(prop.isProvider_flag()) {
-					FileUtil.createJavaFile(entityName + "Provider",
-							FileContentUtil.providerContent(tableName, cloumns, map));
+					FileUtil2.createJavaFile(entityName + "Provider",
+							FileContentUtil2.providerContent(tableName, cloumns, map));
 				}
 				// 创建Repository simple
 				if(prop.isRepository_simple_flag()) {
-					FileUtil.createJavaFile(entityName + "Repository",
-							FileContentUtil.repositoryContentSimple(tableName, primaryKeyColumnName, maps));
+					FileUtil2.createJavaFile(entityName + "Repository",
+							FileContentUtil2.repositoryContentSimple(tableName, primaryKeyColumnName, maps));
 				}
 				// 创建Repository complex
 				if(prop.isRepository_complex_flag()) {
-					FileUtil.createJavaFile(entityName + "RepositoryComplex",
-							FileContentUtil.repositoryContentComplex(tableName, primaryKeyColumnName, maps));
+					FileUtil2.createJavaFile(entityName + "RepositoryComplex",
+							FileContentUtil2.repositoryContentComplex(tableName, primaryKeyColumnName, maps));
 				}
 				//创建sql 模板
 				if(prop.isSql_flag()) {
-					FileUtil.createNewFile(entityName + "-sql",
-							FileContentUtil.sqlContent(tableName, map));
+					FileUtil2.createNewFile(entityName + "-sql",
+							FileContentUtil2.sqlContent(tableName, map));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
