@@ -168,7 +168,7 @@ public class FileContentUtil2 {
 		StringBuffer saveBatchbuffer=new StringBuffer();
 		saveBatchbuffer.append("	@Insert({"+ lineFeed);
 		saveBatchbuffer.append("	\"<script>\"  "+ lineFeed);
-		saveBatchbuffer.append("		  +  \" INSERT INTO "+tableName+" ("+saveFields+") VALUES  \" "+ lineFeed);
+		saveBatchbuffer.append("		  +  \" INSERT INTO `"+tableName+"` ("+saveFields+") VALUES  \" "+ lineFeed);
 		saveBatchbuffer.append("			+\"<foreach collection='list' item='item' index='index' open='' separator=',' close=';' > \"  "+ lineFeed);
 	          
 		
@@ -191,7 +191,7 @@ public class FileContentUtil2 {
 		updateBatchbuffer.append("	@Update({"+ lineFeed);
 		updateBatchbuffer.append("		\"<script>\""+ lineFeed);
 		updateBatchbuffer.append("			+\"<foreach item='item' index='index'  collection='list' open='' separator=';' close=''  > \""+ lineFeed);
-		updateBatchbuffer.append("			+ \" update `message` \""+ lineFeed);
+		updateBatchbuffer.append("			+ \" update `"+tableName+"` \""+ lineFeed);
 		updateBatchbuffer.append("			+ \"<set>\""+ lineFeed);
 	              
 //	             + \"<if test='item.name != null and item.name.length>0 '>\"

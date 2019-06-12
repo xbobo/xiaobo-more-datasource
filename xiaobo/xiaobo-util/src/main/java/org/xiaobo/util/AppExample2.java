@@ -32,7 +32,7 @@ public class AppExample2 {
 		//sql 模板 是否创建
 		prop.setSql_flag(true);
 		//生成    数据库表数组   可不设
-		prop.setExclusive_tables(new String[] {"account"});
+		//prop.setExclusive_tables(new String[] {"account"});
 		//生成    数据库表数组   可不设
 		prop.setInclude_tables(new String[] {"demo"});
 		
