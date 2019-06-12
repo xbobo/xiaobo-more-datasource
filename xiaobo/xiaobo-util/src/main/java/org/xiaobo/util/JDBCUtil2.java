@@ -140,7 +140,7 @@ public class JDBCUtil2 {
 				// 创建 provider
 				if(prop.isProvider_flag()) {
 					FileUtil2.createJavaFile(entityName + "Provider",
-							FileContentUtil2.providerContent(tableName, cloumns, map));
+							FileContentUtil2.providerContent(tableName,primaryKeyColumnName, cloumns, map));
 				}
 				// 创建Repository simple
 				if(prop.isRepository_simple_flag()) {

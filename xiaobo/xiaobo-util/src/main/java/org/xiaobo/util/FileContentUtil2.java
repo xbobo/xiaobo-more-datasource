@@ -129,7 +129,7 @@ public class FileContentUtil2 {
 		
 		for (Entry<String, LinkedHashMap<String, String>> entry : map.entrySet()) {
 			for (Entry<String, String> innterEntry : entry.getValue().entrySet()) {
-				saveFieldBuffer.append(" "+entry.getKey()+",");
+				saveFieldBuffer.append(" `"+entry.getKey()+"`,");
 				baseFind += "		@Result(column =\"" + entry.getKey() + "\" ,property = \""
 						+ innterEntry.getKey() + "\",jdbcType = JdbcType." + innterEntry.getValue() + ")," + lineFeed;
 				
@@ -311,7 +311,7 @@ public class FileContentUtil2 {
 	 * @param map
 	 * @return
 	 */
-	public static String providerContent(String tableName, String cloumns, LinkedHashMap<String, String> map) {
+	public static String providerContent(String tableName,String primaryKeyColumnName, String cloumns, LinkedHashMap<String, String> map) {
 		String fileStart = transformTableName(tableName);
 		String entityStr = "" + "package "+PACKAGE_PATH+".provider;" + lineFeed + lineFeed 
 				+ "import org.apache.commons.lang3.StringUtils;"
@@ -370,7 +370,17 @@ public class FileContentUtil2 {
 		saveBuffer.append("		return sql.toString();" + lineFeed);
 		saveBuffer.append("	}" + lineFeed);
 
-		updateBuffer.append(whereBuffer.toString());
+		//updateBuffer.append(whereBuffer.toString());
+		String prikey = transformFieldName(primaryKeyColumnName);
+		System.out.println(prikey);
+		if (prikey.length() > 1) {
+			prikey = prikey.substring(0, 1).toUpperCase() + prikey.substring(1);
+		} else {
+			prikey = prikey.substring(0, 1).toUpperCase();
+		}
+		updateBuffer.append("		if(entity.get" + prikey + "() != null ) {" + lineFeed);
+		updateBuffer.append("			sql.WHERE(\" " + primaryKeyColumnName + " = #{" + transformFieldName(primaryKeyColumnName) + "}\");" + lineFeed);
+		updateBuffer.append("		}" + lineFeed);
 
 		updateBuffer.append("		return sql.toString();" + lineFeed);
 		updateBuffer.append("	}" + lineFeed);
