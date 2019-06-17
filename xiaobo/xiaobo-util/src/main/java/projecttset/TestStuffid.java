@@ -19,7 +19,7 @@ public class TestStuffid {
     	String [] arr= {"ERP","MMS"};
     	
 	UserVO userVO = new UserVO();
-	userVO.setUserNickname("陈剑");
+	userVO.setUserNickname("测试账号");
 	userVO.setUserId(19027299799441408L);
 	userVO.setUserMobile("13381200177");
 	userVO.setDnsNickName(arr);

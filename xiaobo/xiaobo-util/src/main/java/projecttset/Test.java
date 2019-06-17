@@ -14,7 +14,7 @@ public class Test {
 
     public static void main(String[] args) {
 	UserVO userVO = new UserVO();
-	userVO.setUserNickname("");
+	userVO.setUserNickname("测试账号");
 	userVO.setUserId(123L);
 	// 生成token
 	String jwtToken = JwtUtil.createJWT(userVO.getUserNickname(), userVO.getUserId().toString(), clientId, name,
