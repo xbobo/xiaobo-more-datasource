@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,6 +23,11 @@ public class BufferImageUtil {
 //    <version>4.5.7</version>
 //</dependency>
 	public static void main(String[] args) throws Exception {
+//		//消除文字锯齿
+//	g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+//		//消除画图锯齿
+//		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+ 
 		BufferedImage destImage = new BufferedImage(832, 1250, BufferedImage.TYPE_INT_RGB);
 		initBackageColor(destImage);
 		int curHeight=16;
@@ -47,9 +53,19 @@ public class BufferImageUtil {
 		// 圆角处理
 		destImage = Img.from(destImage).round(0.1).getImg();
 		//缩放
-		BufferedImage resize = ResizeUtil.resize(destImage, 300, 400);
-		FileOutputStream fo = new FileOutputStream(new File("E:/1-z.png"));
-		ImageIO.write(resize, "png", fo);
+		//BufferedImage resize = ResizeUtil.resize(destImage, 300, 400);
+		//生成图片
+		FileOutputStream fo = new FileOutputStream(new File("E:/1.png"));
+		ImageIO.write(destImage, "png", fo);
+		//生成base64
+//		ByteArrayOutputStream baos = new ByteArrayOutputStream();//io流
+//        ImageIO.write(resize, "png", baos);//写入流中
+//        byte[] bytes = baos.toByteArray();//转换成字节
+//        BASE64Encoder encoder = new BASE64Encoder();
+//        String png_base64 =  encoder.encodeBuffer(bytes).trim();//转换成base64串
+//        png_base64 = png_base64.replaceAll("\n", "").replaceAll("\r", "");//删除 \r\n
+//        System.out.println("data:image/png;base64,"+png_base64);
+ 
 	}
 
 	private static int addContentToBufferImageContents(BufferedImage destImage, int curHeight, String content,
@@ -78,6 +94,11 @@ public class BufferImageUtil {
 		// 设置背景色 并赋予背景色
 		g.setBackground(Color.WHITE);// 设置背景色
 		g.clearRect(0, 0, destImage.getWidth(), destImage.getHeight());// 通过使用当前绘图表面的背景色进行填充来清除指定的矩形。
+		//消除文字锯齿
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		//消除画图锯齿
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+ 
 	}
 
 	public static void addImageToBufferImageCommon(BufferedImage srcImage, BufferedImage destImage, int x, int y) {
@@ -99,9 +120,15 @@ public class BufferImageUtil {
 
 	public static void addContentToBufferImage(BufferedImage destImage, int x, int y, String strContent,int rowWidth) {
 		Graphics2D graphics = (Graphics2D) destImage.getGraphics();
-		Font font = new Font("宋体", Font.BOLD, 40);
+		Font font = new Font("Microsoft YaHei", Font.BOLD, 40);
 		graphics.setColor(Color.black);
 		graphics.setFont(font);
+		//消除文字锯齿
+
+		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		//graphics.setPaint(new Color(0, 0, 0, 64));//阴影颜色
+//		graphics.drawString(txt, x, y);//先绘制阴影
+//		graphics.setPaint(Color.BLACK);//正文颜色
 		// 获取字符串 字符的总宽度
 		int strWidth = getStringLength(graphics, strContent);
 		// 每一行字符串宽度
@@ -128,9 +155,14 @@ public class BufferImageUtil {
 					// 第一行不需要增加字符高度，以后的每一行在换行的时候都需要增加字符高度
 					y = y + strHeight;
 				}
+				//graphics.drawString(temp, x, y);//先绘制阴影
+				//graphics.setPaint(Color.BLACK);//正文颜色
 				graphics.drawString(temp, x, y);
+				
 			}
 		} else {
+			//graphics.drawString(strContent, x, y);//先绘制阴影
+			//graphics.setPaint(Color.BLACK);//正文颜色
 			// 直接绘制
 			graphics.drawString(strContent, x, y);
 		}
