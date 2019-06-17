@@ -1,0 +1,18 @@
+#token验证
+author:
+  checkToken: True
+
+#数据库
+spring:
+  application:
+    name: xiaobo_websocket
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: 
+    password: 
+    virtual-host: 
+
+logging:
+  level:
+    org.xiaobo.dao: debug

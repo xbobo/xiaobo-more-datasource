@@ -1,0 +1,17 @@
+<script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
+<script>
+var id=parseInt(Math.random()*10000000000000)
+var url = 'http://localhost:7788/webServer';
+var sock = new SockJS(url);  //创建SockJS连接。
+var stomp = Stomp.over(sock);//创建STOMP客户端实例。实际上封装了SockJS,这样就能在WebSocket连接上发送STOMP消息。
+ 
+stomp.connect({"login":id},function(frame){
+ //alert(111111)
+stomp.subscribe('/user/'+id+'/notice', function(message){
+            
+            });
+});
+</script> 
+ 

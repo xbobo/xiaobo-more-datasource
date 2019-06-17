@@ -1,0 +1,12 @@
+
+spring:
+  profiles:
+    active: dev
+  resources:
+    static-locations: classpath:static/,file:static/
+
+server:
+  port: 8099
+
+swagger:
+  enable: true
