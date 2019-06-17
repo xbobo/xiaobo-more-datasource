@@ -35,6 +35,7 @@
     <module>xiaobo-vue</module>
     <module>xiaobo-wechat</module>
     <module>xiaobo-websocket</module>
+    <module>xiaobo-stomp-message</module>
   </modules>
 	<dependencies>
 		<dependency>
