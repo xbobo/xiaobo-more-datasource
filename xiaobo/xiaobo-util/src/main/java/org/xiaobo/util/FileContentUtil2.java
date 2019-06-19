@@ -213,7 +213,7 @@ public class FileContentUtil2 {
 		StringBuffer removeBatchbuffer=new StringBuffer();
 		removeBatchbuffer.append("	@Delete({"+ lineFeed);
 		removeBatchbuffer.append("		\"<script>\" "+ lineFeed);
-		removeBatchbuffer.append("		+ \"DELETE FROM message WHERE "+primaryKeyColumnName+" in \""+ lineFeed);
+		removeBatchbuffer.append("		+ \"DELETE FROM `"+tableName+"` WHERE "+primaryKeyColumnName+" in \""+ lineFeed);
 		removeBatchbuffer.append("			+ \"<foreach item='item' index='index' collection='ids' open='(' separator=',' close=')'>\""+ lineFeed);
 		removeBatchbuffer.append("			+       \"#{item}\""+ lineFeed);
 		removeBatchbuffer.append("			+ \"</foreach>\" "+ lineFeed);
