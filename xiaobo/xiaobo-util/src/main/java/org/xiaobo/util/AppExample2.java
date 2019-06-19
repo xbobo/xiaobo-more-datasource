@@ -20,7 +20,9 @@ public class AppExample2 {
 		//包基础路径
 		prop.setPackage_path("org.pro.base");
 		//文件生成路径 默认根路径下
-		prop.setFile_path("E:\\entity-java");
+		String path="C:\\entity-java";
+		path=FileUtil2.makeDir(path);
+		prop.setFile_path(path);
 		//类示例是否创建
 		prop.setEntity_flag(true);
 		//provider是否创建
@@ -32,9 +34,9 @@ public class AppExample2 {
 		//sql 模板 是否创建
 		prop.setSql_flag(true);
 		//生成    数据库表数组   可不设
-		//prop.setExclusive_tables(new String[] {"account"});
+		prop.setExclusive_tables(new String[] {"demo"});
 		//生成    数据库表数组   可不设
-		prop.setInclude_tables(new String[] {"demo"});
+		//prop.setInclude_tables(new String[] {"demo"});
 		
 		System.out.println("连接数据库wei:"+prop.getLibrary());
 		

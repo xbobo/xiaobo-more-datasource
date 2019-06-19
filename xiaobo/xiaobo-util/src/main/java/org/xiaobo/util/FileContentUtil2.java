@@ -313,7 +313,7 @@ public class FileContentUtil2 {
 	 */
 	public static String providerContent(String tableName,String primaryKeyColumnName, String cloumns, LinkedHashMap<String, String> map) {
 		String fileStart = transformTableName(tableName);
-		String entityStr = "" + "package "+PACKAGE_PATH+".provider;" + lineFeed + lineFeed 
+		String entityStr = "" + "package "+PACKAGE_PATH+".repository.provider;" + lineFeed + lineFeed 
 				+ "import org.apache.commons.lang3.StringUtils;"
 				+ lineFeed 
 				+ "import org.apache.ibatis.jdbc.SQL;" 

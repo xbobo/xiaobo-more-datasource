@@ -248,4 +248,16 @@ public class FileUtil2 {
 				+ "	List<Message> findAll(Message message);" + lineFeed + "" + lineFeed + "}";
 		createJavaFile("MessageRepository", repositoryStr);
 	}
+	
+	public static String makeDir(String dir){
+    	File file = new File(dir);
+        if(!file.exists()&&!file.isDirectory()){
+            file.mkdir();
+            file.setWritable(true);
+            file.setReadable(true);
+            file.setExecutable(true);
+        }
+		return dir;
+    }
+    
 }
