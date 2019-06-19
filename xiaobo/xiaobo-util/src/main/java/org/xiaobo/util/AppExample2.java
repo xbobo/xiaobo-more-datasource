@@ -12,13 +12,13 @@ public class AppExample2 {
 		//驱动com.mysql.cj.jdbc.Driver  com.mysql.jdbc.Driver
 		prop.setDriver_class_name("com.mysql.cj.jdbc.Driver");
 		// jdbc 链接
-		prop.setUrl("jdbc:mysql://localhost:3306/xiabo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
+		prop.setUrl("jdbc:mysql://localhost:3306/xiaobo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
 		// 账号
 		prop.setUser_name("root");
 		// 密码
 		prop.setPassword("123456");
 		//包基础路径
-		prop.setPackage_path("com.puxinwangxiao.distribution.frontent");
+		prop.setPackage_path("org.pro.base");
 		//文件生成路径 默认根路径下
 		prop.setFile_path("E:\\entity-java");
 		//类示例是否创建
