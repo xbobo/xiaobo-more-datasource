@@ -1,11 +1,17 @@
 package test;
 
+import java.io.File;
+
 public class SingleTest {
 	public static void main(String[] args) {
 		int a=3;
 		System.out.println(3*3);
 		System.out.println(System.currentTimeMillis() / 1000);
 		
+		String str="127"+File.separator+"345"+File.separator+"999";
+		int lastIndexOf = str.lastIndexOf(File.separator);
+		System.out.println(lastIndexOf);
+		System.out.println(str.subSequence(0, lastIndexOf));
 		// 孟美红 18600026488
 		
 //		select ut.user_id AS teacher_id,
