@@ -311,11 +311,11 @@ public class FileContentUtil3 {
 			String comment = commentmap.get(entry.getKey());
 			entityStr +=lineFeed;
 			if(StringUtils.isNotEmpty(comment)) {
-				entityStr += "	@JsonAlias(\""+entry.getKey()+"\")" + lineFeed;
+				//entityStr += "	@JsonAlias(\""+entry.getKey()+"\")" + lineFeed;
 				entityStr += "	@JsonProperty(\""+entry.getKey()+"\")" + lineFeed;
 				entityStr += "	private " + entry.getValue() + " " + transformFieldName(entry.getKey()) + " ; //"+comment+" " + lineFeed;
 			}else {
-				entityStr += "	@JsonAlias(\""+entry.getKey()+"\")" + lineFeed;
+				//entityStr += "	@JsonAlias(\""+entry.getKey()+"\")" + lineFeed;
 				entityStr += "	@JsonProperty(\""+entry.getKey()+"\")" + lineFeed;
 				entityStr += "	private " + entry.getValue() + " " + transformFieldName(entry.getKey()) + " ; " + lineFeed;
 			}
@@ -417,6 +417,17 @@ public class FileContentUtil3 {
 		findBuffer.append("		SQL sql=new SQL();" + lineFeed);
 		findBuffer.append("		sql.SELECT(CLOUMNS);" + lineFeed );
 		findBuffer.append("		sql.FROM(TABLE);" + lineFeed);
+		
+		findBuffer.append("		if(entity.getIds() != null &&entity.getIds().size()>0) {"+ lineFeed);
+		findBuffer.append("			String idsStr=\"\";"+ lineFeed);
+		findBuffer.append("			for(Long id:entity.getIds()) {"+ lineFeed);
+		findBuffer.append("				idsStr+=id+\",\";"+ lineFeed);
+		findBuffer.append("			}"+ lineFeed);
+		findBuffer.append("			if(idsStr.length()>0) {"+ lineFeed);
+		findBuffer.append("				idsStr=idsStr.substring(0,idsStr.length()-1);"+ lineFeed);
+		findBuffer.append("			}"+ lineFeed);
+		findBuffer.append("			sql.WHERE(\" "+primaryKeyColumnName+" in ( \"+idsStr+\" )\");"+ lineFeed);
+		findBuffer.append("		}"+ lineFeed);
 		findBuffer.append(whereBuffer);
 		findBuffer.append("		return sql.toString();" + lineFeed);
 		findBuffer.append("	}" + lineFeed);
@@ -518,11 +529,11 @@ public class FileContentUtil3 {
 		entityStr +=lineFeed;
 		entityStr +="	private List<Long> ids;"+ lineFeed;
 		entityStr +=lineFeed;
-		entityStr +="	@JsonAlias(\"page_size\")"+ lineFeed;
+		//entityStr +="	@JsonAlias(\"page_size\")"+ lineFeed;
 		entityStr +="	@JsonProperty(\"page_size\")"+ lineFeed;
 	    entityStr +="	private Integer pageSize;"+ lineFeed;
 	    entityStr +=lineFeed;
-		entityStr +="	@JsonAlias(\"page_num\")"+ lineFeed;
+		//entityStr +="	@JsonAlias(\"page_num\")"+ lineFeed;
 		entityStr +="	@JsonProperty(\"page_size\")"+ lineFeed;
 		entityStr +="	private Integer pageNum;"+ lineFeed;
 		entityStr +=lineFeed;
@@ -677,6 +688,7 @@ public class FileContentUtil3 {
 				+ lineFeed 
 				+ lineFeed 
 				+ "import java.util.List;" + lineFeed
+				+ "import java.util.ArrayList;" + lineFeed
 				+ lineFeed
 				+ "import "+PACKAGE_PATH+".vo.Result;" + lineFeed
 				+ "import "+PACKAGE_PATH+".entity."+fileStart+";" + lineFeed
@@ -715,7 +727,28 @@ public class FileContentUtil3 {
 		entityStr +="	@PostMapping(\"/update\")"+ lineFeed;
 		entityStr +="	@ResponseBody"+ lineFeed;
 		entityStr +="	public Result update(@RequestBody "+dtoName+" dto) {"+ lineFeed;
+		entityStr +="		if(dto.getId()==null) {"+ lineFeed;
+		entityStr +="			return Result.get(Result.ERROR, \"id不能为空\", null);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
 		entityStr +="		int update = "+firstLowerName+"Service.update(dto);"+ lineFeed;
+		entityStr +="		return Result.get(Result.OK, \"\", update>0);"+ lineFeed;
+		entityStr +="	}"+ lineFeed;
+		entityStr +=lineFeed;
+		
+		entityStr +="	@PostMapping(\"/update_batch\")"+ lineFeed;
+		entityStr +="	@ResponseBody"+ lineFeed;
+		entityStr +="	public Result update_batch(@RequestBody "+dtoName+" dto) {"+ lineFeed;
+		entityStr +="		if(dto.getIds()==null) {"+ lineFeed;
+		entityStr +="			return Result.get(Result.ERROR, \"ids不能为空\", null);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+		
+		entityStr +="		List<"+dtoName+"> list=new ArrayList<"+dtoName+">();"+ lineFeed;
+		entityStr +="		for(Long id:dto.getIds()) {"+ lineFeed;
+		entityStr +="			"+dtoName+" updateDTO=new "+dtoName+"();"+ lineFeed;
+		entityStr +="			updateDTO.setId(id);"+ lineFeed;
+		entityStr +="			list.add(updateDTO);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+		entityStr +="		int update = "+firstLowerName+"Service.updateBatch(list);"+ lineFeed;
 		entityStr +="		return Result.get(Result.OK, \"\", update>0);"+ lineFeed;
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;
