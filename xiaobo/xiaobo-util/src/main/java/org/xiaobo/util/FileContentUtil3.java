@@ -402,6 +402,20 @@ public class FileContentUtil3 {
 		updateBuffer.append("			sql.WHERE(\" " + primaryKeyColumnName + " = #{" + transformFieldName(primaryKeyColumnName) + "}\");" + lineFeed);
 		updateBuffer.append("		}" + lineFeed);
 
+		updateBuffer.append("		if(entity.getIds()!=null&&entity.getIds().size()>0) {" + lineFeed);
+		updateBuffer.append("			String ids=\"\";" + lineFeed);
+		updateBuffer.append("			for(Long id:entity.getIds()) {" + lineFeed);
+		updateBuffer.append("				if(id!=null) {" + lineFeed);
+		updateBuffer.append("					ids+=id+\",\";" + lineFeed);
+		updateBuffer.append("				}" + lineFeed);
+		updateBuffer.append("			}" + lineFeed);
+		updateBuffer.append("			if(ids.length()>0) {" + lineFeed);
+		updateBuffer.append("				ids=ids.substring(0, ids.length()-1);" + lineFeed);
+		updateBuffer.append("				sql.WHERE(\" " + primaryKeyColumnName + " in ( \"+ids+\" )  \");" + lineFeed);
+		updateBuffer.append("			}" + lineFeed);
+		updateBuffer.append("		}" + lineFeed);
+		
+		
 		updateBuffer.append("		return sql.toString();" + lineFeed);
 		updateBuffer.append("	}" + lineFeed);
 
@@ -488,6 +502,7 @@ public class FileContentUtil3 {
 				+ "import lombok.Data;" + lineFeed 
 				+ lineFeed
 				+ "@Data" + lineFeed 
+				+ "@JsonIgnoreProperties({\"create_uid\",\"modify_uid\",\"create_time\",\"modify_time\"})" + lineFeed 
 				+ "public class " + fileStart + "VO extends " + fileStart + " {" + lineFeed;
 		 
 		entityStr += "}";
