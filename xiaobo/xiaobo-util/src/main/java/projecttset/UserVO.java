@@ -19,6 +19,7 @@ public class UserVO {
  
     private String [] dnsNickName ;
 
+
 //    public static UserVO get(StudentDO studentDO){
 //        if(studentDO==null){
 //            throw new UserException("此用户不存在");
@@ -43,4 +44,6 @@ public class UserVO {
 //        }
 //        return userVO;
 //    }
+    
+    
 }
