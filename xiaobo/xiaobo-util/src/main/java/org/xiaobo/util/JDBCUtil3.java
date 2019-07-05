@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSONObject;
  * @date 2019年4月25日
  */
 public class JDBCUtil3 {
+	public static boolean RUN_FLAG=true;
 
 	public static void buildJavaFile(JDBCProperties prop) throws Exception {
 		
@@ -64,6 +65,9 @@ public class JDBCUtil3 {
 		// 2、遍历数据库表，获取各表的字段等信息
 		StringBuffer sbCloumns = new StringBuffer();
 		for (String tableName : tables) {
+			if(!RUN_FLAG) {
+				System.exit(0);
+			}
 			LinkedHashMap<String, String> commentmap = new LinkedHashMap<String, String>();
 
 			// TODO 查询sql注释信息
