@@ -499,6 +499,8 @@ public class FileContentUtil3 {
 				+ lineFeed 
 				+ "import "+PACKAGE_PATH+".entity."+fileStart+";" + lineFeed 
 				+ lineFeed 
+				+ "import com.fasterxml.jackson.annotation.JsonIgnoreProperties;"+ lineFeed 
+				+ lineFeed 
 				+ "import lombok.Data;" + lineFeed 
 				+ lineFeed
 				+ "@Data" + lineFeed 
@@ -520,8 +522,7 @@ public class FileContentUtil3 {
 				+ lineFeed
 				+ "@Data" + lineFeed 
 				+ "public class " + fileStart + "DTO extends " + fileStart + " {" + lineFeed;
-		 
-		entityStr += "}";
+			entityStr += "}";
 		return entityStr;
 	}
 
@@ -549,7 +550,7 @@ public class FileContentUtil3 {
 	    entityStr +="	private Integer pageSize;"+ lineFeed;
 	    entityStr +=lineFeed;
 		//entityStr +="	@JsonAlias(\"page_num\")"+ lineFeed;
-		entityStr +="	@JsonProperty(\"page_size\")"+ lineFeed;
+		entityStr +="	@JsonProperty(\"page_num\")"+ lineFeed;
 		entityStr +="	private Integer pageNum;"+ lineFeed;
 		entityStr +=lineFeed;
 		entityStr += "}";

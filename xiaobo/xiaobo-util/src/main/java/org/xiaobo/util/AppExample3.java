@@ -14,15 +14,16 @@ public class AppExample3 {
 		//驱动com.mysql.cj.jdbc.Driver  com.mysql.jdbc.Driver
 		prop.setDriver_class_name("com.mysql.cj.jdbc.Driver");
 		// jdbc 链接
-		//prop.setUrl("jdbc:mysql://localhost:3306/xiaobo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
+		prop.setUrl("jdbc:mysql://localhost:3306/xiaobo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
 		
-		prop.setUrl("jdbc:mysql://localhost:3306/online2_db_local?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
+		//prop.setUrl("jdbc:mysql://localhost:3306/online2_db_local?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false");
 		// 账号
 		prop.setUser_name("root");
 		// 密码
 		prop.setPassword("123456");
 		//包基础路径
-		prop.setPackage_path("com.puxinwangxiao.erp.core");
+		//prop.setPackage_path("com.puxinwangxiao.erp.core");
+		prop.setPackage_path("org.pro.test");
 		//文件生成路径 默认根路径下
 		String path="C:\\entity-java";
 		path=FileUtil2.makeDir(path);
@@ -40,7 +41,9 @@ public class AppExample3 {
 		//生成    数据库表数组   可不设
 		//prop.setExclusive_tables(new String[] {"demo"});
 		//生成    数据库表数组   可不设
-		prop.setInclude_tables(new String[] {"product_material","live_code","channel_code"});
+		//prop.setInclude_tables(new String[] {"product_material","live_code","channel_code"});
+		
+		prop.setInclude_tables(new String[] {"sys_area","sys_role"});
 		
 		System.out.println("连接数据库wei:"+prop.getLibrary());
 		
