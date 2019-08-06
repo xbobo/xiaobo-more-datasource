@@ -1,4 +1,4 @@
-﻿package projecttset;
+package projecttset;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class Test {
     public static void main(String[] args) {
 	UserVO userVO = new UserVO();
 	userVO.setUserNickname("测试账号");
-	userVO.setUserId(123L);
+	userVO.setUserId(12345678912356L);
 	// 生成token
 	String jwtToken = JwtUtil.createJWT(userVO.getUserNickname(), userVO.getUserId().toString(), clientId, name,
 		expiresSecond * 1000, base64Secret);

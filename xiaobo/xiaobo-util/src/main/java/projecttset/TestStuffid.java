@@ -6,7 +6,6 @@ import java.util.Map;
 
 import io.jsonwebtoken.Claims;
 
-
 public class TestStuffid {
  
     static String clientId = "098f6bcd4621d373c2134e832627b4f6";
@@ -21,8 +20,20 @@ public class TestStuffid {
 	UserVO userVO = new UserVO();
 	userVO.setUserNickname("测试账号");
 	userVO.setUserId(19027299799441408L);
-	userVO.setUserId(20963366932881408L);
+	//userVO.setUserId(19027299879133185L);
+	// front
+	 userVO.setUserId(20963366932881408L);
+
+	//userVO.setUserId(36820026381344768L);
+	
+	//userVO.setUserId(42979594073317376L);16169128680530105
+		// mms
+		//userVO.setUserId(16169128680530105L);
+
+	userVO.setUserId(19027299879133185L);
+	
 	userVO.setUserMobile("13381200177");
+	//userVO.setUserMobile("13261462623");
 	userVO.setDnsNickName(arr);
 	// 生成token
 	String jwtToken = JwtUtil.createJWT(userVO.getUserNickname(), userVO.getUserId().toString(),userVO.getUserMobile(),userVO.getDnsNickName(), clientId, name,
