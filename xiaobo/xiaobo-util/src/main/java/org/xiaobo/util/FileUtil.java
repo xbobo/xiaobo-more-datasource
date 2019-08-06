@@ -248,4 +248,20 @@ public class FileUtil {
 				+ "	List<Message> findAll(Message message);" + lineFeed + "" + lineFeed + "}";
 		createJavaFile("MessageRepository", repositoryStr);
 	}
+	public static boolean makeDirs(String fileName) {
+		File file = new File(fileName);
+		try {
+			// 如果文件不存在，则创建新的文件
+			if (!file.exists()) {
+				file.createNewFile();
+				System.out.println("success create file,the file is " + filenameTemp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return true;
+	}
+
+
 }
