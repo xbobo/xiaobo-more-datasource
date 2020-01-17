@@ -29,7 +29,7 @@
 		<module>xiaobo-activity</module>
 		<module>xiaobo-mybatis-moredatasource-package</module>
 		<module>xiaobo-mybatis-moredatasource-aop</module>
-		<module>xiaobo-flowable</module>
+
     <module>xiaobo-util</module>
     <module>xiaobo-generator</module>
     <module>xiaobo-vue</module>
