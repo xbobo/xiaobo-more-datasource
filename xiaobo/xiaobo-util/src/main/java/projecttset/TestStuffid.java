@@ -63,10 +63,8 @@ public class TestStuffid {
         //bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi6ZmI5YmRIiwidXNlcmlkIjoiMTkwMjcyOTk3OTk0NDE0MDgiLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.yn0Mm3vIPdp3M7SmEGztlLbImc73AKbmcYtPRLZh7RU
         final String authHeader = "bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi55u855u8IiwidXNlcmlkIjoiNDg3MzUyMTg5Mzc2Njc1ODQiLCJkbnNOaWNrTmFtZSI6WyJFUlAiLCJNTVMiXSwibW9iaWxlIjoiMTg1MTM1ODA2ODQiLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.NAnJiLJKbg-KtEE3Z4IwudEJnNjleQEOEzxBv52XBoo";
         final String authHeader1 = "bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5p2o5pmoIiwidXNlcmlkIjoiNTM5MjA0Njk5MjIxMjc4NzIiLCJkbnNOaWNrTmFtZSI6WyJFUlAiLCJNTVMiXSwibW9iaWxlIjoiMTUxNDAxMDQ1OTgiLCJsb2dpbl90aW1lIjoxNTU5MTI4MTEzODczLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.n0l0DvKYGhLoVAXCM2Pua_9AmvXabEZukNVErzgf5P0";
-        final String testHead1 = "bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5rWL6K-V6ams6I65IiwidXNlcmlkIjoiMzkwODcwNzQxMDA2ODI3NTIiLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.Bx3f_8LwhbK1bxGkWDsrwuZu5GizESgLDuFhBxmousU";
-        final String testHead ="bearer;eyJ0eXAiOiJKV1QiLCJhbGcioiJIUzI1NiJ9.eyJuYW1lIjoicHh3eDAyODAiLCJ1c2VyaWQiOiI0MTU0MDE3NZI0NDC1ODAxNiIsImlzcyI6InJIc3RhcGI1c2VyIiwiYXVkIjoiMDk4ZjZiY2Q0NjIXZDM3M2MyMTM0ZTgzMjYyN2I0ZjYifQ.KbSzR13v8IOkEvvrpxnH-rMRG7CEVAFIxZemJ6466C4";
-                             //"bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoicHh3eDAyODAiLCJ1c2VyaWQiOiI0MTU0MDE3NzI0NDc1ODAxNiIsImlzcyI6InJlc3RhcGl1c2VyIiwiYXVkIjoiMDk4ZjZiY2Q0NjIxZDM3M2MyMTM0ZTgzMjYyN2I0ZjYifQ.KbSzR13v8IOkEvvrpxnH-rMRG7CEVAFlxZemJ6466C4";
-        final String token = testHead.substring(7);
+        final String testHead = "bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5rWL6K-V6ams6I65IiwidXNlcmlkIjoiMzkwODcwNzQxMDA2ODI3NTIiLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.Bx3f_8LwhbK1bxGkWDsrwuZu5GizESgLDuFhBxmousU";
+         final String token = testHead.substring(7);
 
         final Claims claims = JwtUtil.parseJWT(token, base64Secret);
         //dnsNickName=[ERP, MMS]
@@ -91,7 +89,6 @@ public class TestStuffid {
         //	   2019062614001003
         //    40774788365721600,25189709790879744
 
-
 //	    "year" : 2019,
 //        "grade_mode" : "09,08,07",
 //        "quarter_mode" : "C",
@@ -99,7 +96,6 @@ public class TestStuffid {
 //        "course_mode" : "C",
 //        "buy_start_time" : NumberLong(1551270038),
 //        "buy_end_time" : NumberLong(1564416000)
-
 
         String encrypt = Utils.getEncrypt(salt, "185699");
         System.out.println(encrypt);

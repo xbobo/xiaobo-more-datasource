@@ -1,10 +1,9 @@
 package date;
 
-import weixin.nati.DateUtil;
-
-import java.math.BigDecimal;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author xiaobo
@@ -12,15 +11,25 @@ import java.util.concurrent.locks.ReentrantLock;
  * @description:
  */
 public class DateTest {
-    private final static Lock lock = new ReentrantLock();
 
     public static void main(String[] args) {
-//        System.out.println(DateUtil.getDayStr(1564668000L, 1564675200L));
-//        System.out.println(DateUtil.getDayStr(1564754400L, 1564675200L));
-//        System.out.println(DateUtil.getDayStr(1564675200L, 1564754400L));
-        System.out.println(new String("\u548c\u5e73\u533a"));
+//        List<Long> list=new ArrayList<>();
+//        list.add(1L);list.add(2L);list.add(3L);
+//
+//        List<Long> list1=new ArrayList<>(list);
+//
+//        list1.removeAll(list);
+//
+//        System.out.println(list.size());
 
-
+        String str="blob:http://www.pxwx.com/7bb6e72d-a1d3-4380-ae86-082c2208ed2f";
+        String reg=".+//.+/(.+)";
+        Pattern pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(str);
+        if(matcher.find()){
+            System.out.println(matcher.group(0));
+            System.out.println(matcher.group(1));
+        }
 
     }
 }

@@ -22,8 +22,8 @@ public class AppExample3 {
         // 密码
         prop.setPassword("123456");
         //包基础路径
-        //prop.setPackage_path("com.puxinwangxiao.erp.core");
         prop.setPackage_path("com.puxinwangxiao.erp.core");
+        //prop.setPackage_path("com.puxinwangxiao.mms.pcource");
         //文件生成路径 默认根路径下
         String path = "C:\\entity-java";
         path = FileUtil2.makeDir(path);
@@ -50,16 +50,18 @@ public class AppExample3 {
 //				"order_refund_approval_detail"});
 
         prop.setInclude_tables(new String[]{
-                "recommend_live_code_source"});
-
+                "doc"});
 
         System.out.println("连接数据库wei:" + prop.getLibrary());
 
         JDBCUtil3.buildJavaFile(prop);
 
+
 //		System.out.println(FileUtil.getCurrentPath());
 //		System.out.println(FileUtil.getCurrentRootPath());
 //		System.out.println(FileUtil.getCurrentSystemPath());
+        System.out.println("123".concat("APP"));
 
     }
 }
+

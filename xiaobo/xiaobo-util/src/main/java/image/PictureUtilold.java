@@ -64,7 +64,7 @@ public class PictureUtilold {
 		//添加二维码提示
 		addContentToBufferImageSimple(destImage,curHeight, "长按识别二维码");
 		// 圆角处理
-		destImage = Img.from(destImage).round(0.1).getImg();
+		destImage =(BufferedImage) Img.from(destImage).round(0.1).getImg();
 		//缩放
 		BufferedImage resize = ResizeUtil.resize(destImage, allWeight, allHeight);
 		
@@ -154,7 +154,7 @@ public class PictureUtilold {
 		//添加二维码提示
 		addContentToBufferImageSimple(destImage,curHeight, "长按识别二维码");
 		// 圆角处理
-		destImage = Img.from(destImage).round(0.1).getImg();
+		destImage = (BufferedImage)Img.from(destImage).round(0.1).getImg();
 		//缩放
 		BufferedImage resize = ResizeUtil.resize(destImage, allWeight, allHeight);
 		FileOutputStream fo = new FileOutputStream(new File("E:/12.png"));
@@ -198,7 +198,7 @@ public class PictureUtilold {
 		//添加二维码提示
 		addContentToBufferImageSimple(destImage,curHeight, "长按识别二维码");
 		// 圆角处理
-		destImage = Img.from(destImage).round(0.1).getImg();
+		destImage = (BufferedImage)Img.from(destImage).round(0.1).getImg();
 		//缩放
 		BufferedImage resize = ResizeUtil.resize(destImage, allWeight, allHeight);
 		
@@ -241,7 +241,7 @@ public class PictureUtilold {
 
 	public static void addImageToBufferImageCommon(BufferedImage srcImage, BufferedImage destImage, int x, int y) {
 		Graphics2D graphics = (Graphics2D) destImage.getGraphics();
-		srcImage = Img.from(srcImage).round(0.1).getImg();
+		srcImage = (BufferedImage)Img.from(srcImage).round(0.1).getImg();
 		graphics.drawImage(srcImage, x, y, null);
 	}
 	

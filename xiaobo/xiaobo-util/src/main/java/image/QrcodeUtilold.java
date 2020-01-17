@@ -1,9 +1,6 @@
 package image;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -172,7 +169,7 @@ public class QrcodeUtilold {
 		g2d.drawString("网校", 3, 52);
 		// 释放对象
 		g2d.dispose();
-		image = Img.from(image).round(0.3).getImg();
+        image = (BufferedImage)Img.from(image).round(0.3).getImg();
          return image;
 	}
 }

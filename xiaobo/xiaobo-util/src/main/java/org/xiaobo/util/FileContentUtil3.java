@@ -18,7 +18,7 @@ public class FileContentUtil3 {
 	/**
 	 * sql 生成
 	 * @param tableName
-	 * @param commentmap
+	 * @param
 	 * @return
 	 */
 	public static String sqlContent(String tableName,LinkedHashMap<String, String> map) {
@@ -312,10 +312,18 @@ public class FileContentUtil3 {
 			entityStr +=lineFeed;
 			if(StringUtils.isNotEmpty(comment)) {
 				//entityStr += "	@JsonAlias(\""+entry.getKey()+"\")" + lineFeed;
+
+				entityStr +="	/**"+ lineFeed;
+				entityStr +="	 * "+comment+" "+ lineFeed;
+				entityStr +="	 */"+ lineFeed;
+
 				entityStr += "	@JsonProperty(\""+entry.getKey()+"\")" + lineFeed;
-				entityStr += "	private " + entry.getValue() + " " + transformFieldName(entry.getKey()) + " ; //"+comment+" " + lineFeed;
+				entityStr += "	private " + entry.getValue() + " " + transformFieldName(entry.getKey()) + " ; " + lineFeed;
 			}else {
 				//entityStr += "	@JsonAlias(\""+entry.getKey()+"\")" + lineFeed;
+				entityStr +="	/**"+ lineFeed;
+				entityStr +="	 * "+comment+" "+ lineFeed;
+				entityStr +="	 */"+ lineFeed;
 				entityStr += "	@JsonProperty(\""+entry.getKey()+"\")" + lineFeed;
 				entityStr += "	private " + entry.getValue() + " " + transformFieldName(entry.getKey()) + " ; " + lineFeed;
 			}

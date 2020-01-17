@@ -163,7 +163,7 @@ public class QrcodeUtil {
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		// 释放对象
 		g2d.dispose();
-		image = Img.from(image).round(0.3).getImg();
+		image = (BufferedImage)Img.from(image).round(0.3).getImg();
          return image;
 	}
 	public static BufferedImage buildLogo60() throws Exception {
@@ -181,7 +181,7 @@ public class QrcodeUtil {
 		g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		// 释放对象
 		g2d.dispose();
-		image = Img.from(image).round(0.3).getImg();
+		image = (BufferedImage)Img.from(image).round(0.3).getImg();
          return image;
 	}
 	public static void main(String[] args) throws Exception {
