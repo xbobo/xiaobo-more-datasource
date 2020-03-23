@@ -50,7 +50,7 @@ public class AppExample3 {
 //				"order_refund_approval_detail"});
 
         prop.setInclude_tables(new String[]{
-                "doc"});
+                "study_report"});
 
         System.out.println("连接数据库wei:" + prop.getLibrary());
 
