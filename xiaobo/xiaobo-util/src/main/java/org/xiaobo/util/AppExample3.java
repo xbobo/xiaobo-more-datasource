@@ -50,12 +50,13 @@ public class AppExample3 {
 //				"order_refund_approval_detail"});
 
         prop.setInclude_tables(new String[]{
-                "doc"});
+                "camp_ins_books_record","camp_ins_sta_rank"
+                ,"camp_invite","camp_inviter_invitee"
+                ,"camp_withdrawal_infos","camp_withdrawal_introduce"});
 
         System.out.println("连接数据库wei:" + prop.getLibrary());
 
         JDBCUtil3.buildJavaFile(prop);
-
 
 //		System.out.println(FileUtil.getCurrentPath());
 //		System.out.println(FileUtil.getCurrentRootPath());

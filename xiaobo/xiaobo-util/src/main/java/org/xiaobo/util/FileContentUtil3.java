@@ -555,11 +555,11 @@ public class FileContentUtil3 {
 		entityStr +=lineFeed;
 		//entityStr +="	@JsonAlias(\"page_size\")"+ lineFeed;
 		entityStr +="	@JsonProperty(\"page_size\")"+ lineFeed;
-	    entityStr +="	private Integer pageSize;"+ lineFeed;
+	    entityStr +="	private Integer pageSize = 10;"+ lineFeed;
 	    entityStr +=lineFeed;
 		//entityStr +="	@JsonAlias(\"page_num\")"+ lineFeed;
 		entityStr +="	@JsonProperty(\"page_num\")"+ lineFeed;
-		entityStr +="	private Integer pageNum;"+ lineFeed;
+		entityStr +="	private Integer pageNum = 1;"+ lineFeed;
 		entityStr +=lineFeed;
 		entityStr += "}";
 		return entityStr;
@@ -667,10 +667,14 @@ public class FileContentUtil3 {
 		
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public List<"+voName+"> find("+dtoName+" dto) {"+ lineFeed;
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			dto.setPageNum(null);"+ lineFeed;
+		entityStr +="			dto.setPageSize(null);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
 		entityStr +="		return "+firstLowerName+"Repository.find(dto);"+ lineFeed;
 		entityStr +="	}"+ lineFeed;
-		entityStr +=lineFeed;	
-		
+		entityStr +=lineFeed;
+
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public PageInfo<" + voName + "> findPage(" + dtoName + " dto) {"+ lineFeed;
 		entityStr +="		PageHelper.startPage(dto.getPageNum(), dto.getPageSize());"+ lineFeed;
