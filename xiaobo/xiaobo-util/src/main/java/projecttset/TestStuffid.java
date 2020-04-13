@@ -42,8 +42,11 @@ public class TestStuffid {
         // mms
         userVO.setUserId(72388427321221120L);
         //userVO.setUserId(39087074100682752L);
+        //local
 
-        userVO.setUserId(41540177244758016L);
+        userVO.setUserId(39321190226239488L);
+
+        //userVO.setUserId(41540177244758016L);
         //userVO.setUserId(19027299879133185L);
 
         userVO.setUserMobile("13381200177");
@@ -97,7 +100,7 @@ public class TestStuffid {
 //        "buy_start_time" : NumberLong(1551270038),
 //        "buy_end_time" : NumberLong(1564416000)
 
-        String encrypt = Utils.getEncrypt(salt, "185699");
+        String encrypt = Utils.getEncrypt(salt, "123456");
         System.out.println(encrypt);
 
         System.out.println("ABCd".equalsIgnoreCase("abcD"));
