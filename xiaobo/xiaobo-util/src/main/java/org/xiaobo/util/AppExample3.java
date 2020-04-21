@@ -50,7 +50,14 @@ public class AppExample3 {
 //				"order_refund_approval_detail"});
 
         prop.setInclude_tables(new String[]{
-                "camp_convert_code","camp_invite"});
+                "product_official_account",
+                "wx_official_account_template",
+                "recommend_product_official_account",
+                "recommend_product_official_wechat",
+                "product_official_account_template",
+                "camp_wx_send_msg_temp",
+                "dict","camp_wx_send_msg_history",
+                "third_part_oauth_info"});
 
         System.out.println("连接数据库wei:" + prop.getLibrary());
 

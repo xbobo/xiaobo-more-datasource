@@ -360,11 +360,11 @@ public class FileContentUtil3 {
 		StringBuffer removeBuffer = new StringBuffer("	/**"+ lineFeed+"	* 删除方法"+ lineFeed+"	*/"+ lineFeed);
 		StringBuffer whereBuffer = new StringBuffer();
 		StringBuffer findBuffer = new StringBuffer("	/**"+ lineFeed+"	* 查询方法"+ lineFeed+"	*/"+ lineFeed);
-		saveBuffer.append("	public String save(" + fileStart + " entity) {" + lineFeed );
+		saveBuffer.append("	public String save(" + fileStart + "DTO entity) {" + lineFeed );
 		saveBuffer.append("		SQL sql=new SQL();"+ lineFeed);
 		saveBuffer.append("		sql.INSERT_INTO(TABLE);"+ lineFeed);
 
-		updateBuffer.append("	public String update(" + fileStart + " entity) {" + lineFeed);
+		updateBuffer.append("	public String update(" + fileStart + "DTO entity) {" + lineFeed);
 		updateBuffer.append("		SQL sql=new SQL();" + lineFeed);
 		updateBuffer.append("		sql.UPDATE(TABLE);" + lineFeed);
 
@@ -427,7 +427,7 @@ public class FileContentUtil3 {
 		updateBuffer.append("		return sql.toString();" + lineFeed);
 		updateBuffer.append("	}" + lineFeed);
 
-		removeBuffer.append("	public String remove(" + fileStart + " entity) {" + lineFeed);
+		removeBuffer.append("	public String remove(" + fileStart + "DTO entity) {" + lineFeed);
 		removeBuffer.append( "		SQL sql=new SQL();"+ lineFeed );
 		removeBuffer.append("		sql.DELETE_FROM(TABLE);" + lineFeed);
 		
@@ -435,7 +435,7 @@ public class FileContentUtil3 {
 		removeBuffer.append("		return sql.toString();" + lineFeed);
 		removeBuffer.append("	}" + lineFeed);
 
-		findBuffer.append("	public String find(" + fileStart + " entity) {" + lineFeed );
+		findBuffer.append("	public String find(" + fileStart + "DTO entity) {" + lineFeed );
 		findBuffer.append("		SQL sql=new SQL();" + lineFeed);
 		findBuffer.append("		sql.SELECT(CLOUMNS);" + lineFeed );
 		findBuffer.append("		sql.FROM(TABLE);" + lineFeed);
@@ -525,11 +525,21 @@ public class FileContentUtil3 {
 		String entityStr = "" + "package "+PACKAGE_PATH+".dto;" + lineFeed + lineFeed 
 				+ lineFeed 
 				+ "import "+PACKAGE_PATH+".entity."+fileStart+";" + lineFeed 
-				+ lineFeed 
+				+ lineFeed
+				+ "import com.fasterxml.jackson.annotation.JsonProperty;" + lineFeed
 				+ "import lombok.Data;" + lineFeed 
 				+ lineFeed
 				+ "@Data" + lineFeed 
 				+ "public class " + fileStart + "DTO extends " + fileStart + " {" + lineFeed;
+		entityStr +=lineFeed;
+		//entityStr +="	@JsonAlias(\"page_size\")"+ lineFeed;
+		entityStr +="	@JsonProperty(\"page_size\")"+ lineFeed;
+		entityStr +="	private Integer pageSize = 10;"+ lineFeed;
+		entityStr +=lineFeed;
+		//entityStr +="	@JsonAlias(\"page_num\")"+ lineFeed;
+		entityStr +="	@JsonProperty(\"page_num\")"+ lineFeed;
+		entityStr +="	private Integer pageNum = 1;"+ lineFeed;
+		entityStr +=lineFeed;
 			entityStr += "}";
 		return entityStr;
 	}
