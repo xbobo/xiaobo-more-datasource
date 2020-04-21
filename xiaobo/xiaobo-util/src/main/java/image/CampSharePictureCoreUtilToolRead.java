@@ -68,7 +68,15 @@ public class CampSharePictureCoreUtilToolRead {
         BufferedImage bimage=null;
         GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
-            int transparency = Transparency.OPAQUE;
+
+//            字段摘要
+//            static int	BITMASK
+//            表示保证完全不透明的图像数据（alpha 值为 1.0）或完全透明的图像数据（alpha 值为 0.0）。
+//            static int	OPAQUE
+//            表示保证完全不透明的图像数据，意味着所有像素 alpha 值都为 1.0。
+//            static int	TRANSLUCENT
+//            表示包含或可能包含位于 0.0 和 1.0（含两者）之间的任意 alpha 值的图像数据。
+            int transparency = Transparency.TRANSLUCENT;//原背景
             GraphicsDevice gs=ge.getDefaultScreenDevice();
             GraphicsConfiguration gc=gs.getDefaultConfiguration();
             bimage=gc.createCompatibleImage(image.getWidth(null), image.getHeight(null), transparency);
