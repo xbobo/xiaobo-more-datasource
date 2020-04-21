@@ -67,6 +67,14 @@ public class CampSharePictureCoreUtilToolRead {
         image=new ImageIcon(image).getImage();
         BufferedImage bimage=null;
         GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+        int width = image.getWidth(null);
+        if(width<=0) {
+            width=430;
+        }
+        int height = image.getHeight(null);
+        if(height<=0) {
+            height=430;
+        }
         try {
 
 //            字段摘要
@@ -79,13 +87,13 @@ public class CampSharePictureCoreUtilToolRead {
             int transparency = Transparency.TRANSLUCENT;//原背景
             GraphicsDevice gs=ge.getDefaultScreenDevice();
             GraphicsConfiguration gc=gs.getDefaultConfiguration();
-            bimage=gc.createCompatibleImage(image.getWidth(null), image.getHeight(null), transparency);
+            bimage=gc.createCompatibleImage(width, height, transparency);
         } catch (HeadlessException e) {
              e.printStackTrace();
         }
         if(bimage == null) {
             int type = BufferedImage.TYPE_INT_BGR;
-            bimage=new BufferedImage(image.getWidth(null), image.getHeight(null), type);
+            bimage=new BufferedImage(width, height, type);
         }
         
         Graphics g=bimage.createGraphics();
