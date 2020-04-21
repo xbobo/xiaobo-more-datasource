@@ -133,8 +133,8 @@ public class CampSharePictureUtil {
             file.mkdirs();
         }
         String fullPath = dirPath + File.separator + fileName;
-        FileUtilShare.upload(bytes, fullPath);
-        FileUtilShare.qiniu(fileName, fullPath);
+        FileUtil.upload(bytes, fullPath);
+        FileUtil.qiniu(fileName, fullPath);
 
         return "http://resource.puxinwangxiao.com/" + fileName;
     }
@@ -189,8 +189,8 @@ public class CampSharePictureUtil {
             file.mkdirs();
         }
         String fullPath = dirPath + File.separator + fileName;
-        FileUtilShare.upload(bytes, fullPath);
-        FileUtilShare.qiniu(fileName, fullPath);
+        FileUtil.upload(bytes, fullPath);
+        FileUtil.qiniu(fileName, fullPath);
 
         return "http://resource.puxinwangxiao.com/" + fileName;
     }
@@ -258,8 +258,8 @@ public class CampSharePictureUtil {
             file.mkdirs();
         }
         String fullPath = dirPath + File.separator + fileName;
-        FileUtilShare.upload(bytes, fullPath);
-        FileUtilShare.qiniu(fileName, fullPath);
+        FileUtil.upload(bytes, fullPath);
+        FileUtil.qiniu(fileName, fullPath);
 
         return "https://resource.puxinwangxiao.com/" + fileName;
     }
@@ -294,8 +294,8 @@ public class CampSharePictureUtil {
             file.mkdirs();
         }
         String fullPath = dirPath + File.separator + fileName;
-        FileUtilShare.upload(bytes, fullPath);
-        FileUtilShare.qiniu(fileName, fullPath);
+        FileUtil.upload(bytes, fullPath);
+        FileUtil.qiniu(fileName, fullPath);
 
         return "http://resource.puxinwangxiao.com/" + fileName;
     }
@@ -478,8 +478,8 @@ public class CampSharePictureUtil {
             file.mkdirs();
         }
         String fullPath = dirPath + File.separator + fileName;
-        FileUtilShare.upload(bytes, fullPath);
-        FileUtilShare.qiniu(fileName, fullPath);
+        FileUtil.upload(bytes, fullPath);
+        FileUtil.qiniu(fileName, fullPath);
 
        System.out.println("http://resource.puxinwangxiao.com/" + fileName);;
     }
