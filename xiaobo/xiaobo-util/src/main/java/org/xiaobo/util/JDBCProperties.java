@@ -25,6 +25,8 @@ public class JDBCProperties {
 	private boolean repository_complex_flag=true;
 	//sql 模板 是否创建
 	private boolean sql_flag=true;
+
+	private boolean serviceSimpleFlag=true;
 	// 生成包路径
 	private String package_path = "org.example.com";
 	// 生成文件  默认根路径下
@@ -113,6 +115,14 @@ public class JDBCProperties {
 		return entity_flag;
 	}
 
+	public boolean isServiceSimpleFlag() {
+		return serviceSimpleFlag;
+	}
+
+	public void setServiceSimpleFlag(boolean serviceSimpleFlag) {
+		this.serviceSimpleFlag = serviceSimpleFlag;
+	}
+
 	public void setEntity_flag(boolean entity_flag) {
 		this.entity_flag = entity_flag;
 	}
@@ -152,6 +162,8 @@ public class JDBCProperties {
 	public void setLibrary(String library) {
 		this.library = library;
 	}
+
+
 
 	private static String buildLibaryName(String url) {
 		if(url!=null) {

@@ -575,7 +575,7 @@ public class FileContentUtil3 {
 		return entityStr;
 	}
 
-	public static String serviceContent(String tableName, LinkedHashMap<String, String> map,
+	public static String serviceComplexContent(String tableName, LinkedHashMap<String, String> map,
 			LinkedHashMap<String, String> commentmap) {
 		String fileStart = transformTableName(tableName);
 		String entityStr = "" + "package "+PACKAGE_PATH+".service;" + lineFeed + lineFeed 
@@ -589,7 +589,7 @@ public class FileContentUtil3 {
 				+ lineFeed
 				+ "import com.github.pagehelper.PageInfo;" + lineFeed
 				+ lineFeed
-				+ "public interface " + fileStart + "Service  {" + lineFeed;
+				+ "public interface " + fileStart + "ServiceComplex  {" + lineFeed;
 		
 		entityStr +=lineFeed;
 		entityStr +="	int save("+fileStart+"DTO  dto);"+ lineFeed;
@@ -619,8 +619,44 @@ public class FileContentUtil3 {
 		entityStr += "}";
 		return entityStr;
 	}
+	public static String serviceSimpleContent(String tableName, LinkedHashMap<String, String> map,
+										LinkedHashMap<String, String> commentmap) {
+		String fileStart = transformTableName(tableName);
+		String entityStr = "" + "package "+PACKAGE_PATH+".service;" + lineFeed + lineFeed
+				+ lineFeed
+				+ lineFeed
+				+ "import java.util.List;" + lineFeed
+				+ lineFeed
+				+ "import "+PACKAGE_PATH+".entity."+fileStart+";" + lineFeed
+				+ "import "+PACKAGE_PATH+".vo."+fileStart+"VO;" + lineFeed
+				+ "import "+PACKAGE_PATH+".dto."+fileStart+"DTO;" + lineFeed
+				+ lineFeed
+				+ "import com.github.pagehelper.PageInfo;" + lineFeed
+				+ lineFeed
+				+ "public interface " + fileStart + "Service  {" + lineFeed;
 
-	public static String serviceImplContent(String tableName, LinkedHashMap<String, String> map,
+		entityStr +=lineFeed;
+		entityStr +="	int save("+fileStart+"DTO  dto);"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	int update("+fileStart+"DTO  dto);"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	int remove("+fileStart+"DTO  dto);"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	List<"+fileStart+"VO> find("+fileStart+"DTO  dto);"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	PageInfo<"+fileStart+"VO> findPage("+fileStart+"DTO  dto);"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr += "}";
+		return entityStr;
+	}
+
+
+	public static String serviceComplexImplContent(String tableName, LinkedHashMap<String, String> map,
 			LinkedHashMap<String, String> commentmap) {
 		String fileStart = transformTableName(tableName);
 		String firstLowerName = transformNameFirstLower(fileStart);
@@ -645,7 +681,7 @@ public class FileContentUtil3 {
 				+ "import com.github.pagehelper.PageInfo;" + lineFeed
 				+ lineFeed
 				+ "@Service" + lineFeed
-				+ "public class " + fileStart + "ServiceImpl implements " + fileStart + "Service  {" + lineFeed;
+				+ "public class " + fileStart + "ServiceImplComplex implements " + fileStart + "ServiceComplex  {" + lineFeed;
 		
 		entityStr +=lineFeed;
 		entityStr +="	@Autowired"+ lineFeed;
@@ -746,6 +782,105 @@ public class FileContentUtil3 {
 		entityStr += "}";
 		return entityStr;
 	}
+
+	public static String serviceImplSimpleContent(String tableName, LinkedHashMap<String, String> map,
+											LinkedHashMap<String, String> commentmap) {
+		String fileStart = transformTableName(tableName);
+		String firstLowerName = transformNameFirstLower(fileStart);
+		String voName=fileStart+"VO";
+		String dtoName=fileStart+"DTO";
+		String entityStr = "" + "package "+PACKAGE_PATH+".service.impl;" + lineFeed + lineFeed
+				+ lineFeed
+				+ lineFeed
+				+ "import java.util.List;" + lineFeed
+				+ lineFeed
+				+ "import "+PACKAGE_PATH+".entity."+fileStart+";" + lineFeed
+				+ "import "+PACKAGE_PATH+".vo."+fileStart+"VO;" + lineFeed
+				+ "import "+PACKAGE_PATH+".dto."+fileStart+"DTO;" + lineFeed
+				+ "import "+PACKAGE_PATH+".repository."+fileStart+"Repository;" + lineFeed
+				+ "import "+PACKAGE_PATH+".repository."+fileStart+"RepositoryComplex;" + lineFeed
+				+ "import "+PACKAGE_PATH+".service."+fileStart+"Service;" + lineFeed
+
+				+ "import org.springframework.beans.factory.annotation.Autowired;" + lineFeed
+				+ "import org.springframework.stereotype.Service;" + lineFeed
+				+ lineFeed
+				+ "import com.github.pagehelper.PageHelper;" + lineFeed
+				+ "import com.github.pagehelper.PageInfo;" + lineFeed
+				+ lineFeed
+				+ "@Service" + lineFeed
+				+ "public class " + fileStart + "ServiceImpl implements " + fileStart + "Service  {" + lineFeed;
+
+		entityStr +=lineFeed;
+		entityStr +="	@Autowired"+ lineFeed;
+		entityStr +="	" + fileStart + "Repository "+firstLowerName+"Repository;"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	@Autowired"+ lineFeed;
+		entityStr +="	" + fileStart + "RepositoryComplex "+firstLowerName+"RepositoryComplex;"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	@Override"+ lineFeed;
+		entityStr +="	public int save(" + dtoName + " dto) {"+ lineFeed;
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			long currentTime=System.currentTimeMillis()/1000;"+ lineFeed;
+		entityStr +="			dto.setCreateTime(currentTime);"+ lineFeed;
+		entityStr +="			dto.setModifyTime(currentTime);"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.save(dto);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+
+		entityStr +="		return 0;"+ lineFeed;
+		entityStr +="	}"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	@Override"+ lineFeed;
+		entityStr +="	public int update(" + dtoName + " dto) {"+ lineFeed;
+
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			dto.setModifyTime(System.currentTimeMillis()/1000);"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.update(dto);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+
+		entityStr +="		return  0;"+ lineFeed;
+		entityStr +="	}"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	@Override"+ lineFeed;
+		entityStr +="	public int remove(" + dtoName + " dto) {"+ lineFeed;
+
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.remove(dto);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+		entityStr +="		return  0;"+ lineFeed;
+
+		entityStr +="	}"+ lineFeed;
+		entityStr +=lineFeed;
+
+
+		entityStr +="	@Override"+ lineFeed;
+		entityStr +="	public List<"+voName+"> find("+dtoName+" dto) {"+ lineFeed;
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			dto.setPageNum(null);"+ lineFeed;
+		entityStr +="			dto.setPageSize(null);"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.find(dto);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+
+		entityStr +="		return null;"+ lineFeed;
+		entityStr +="	}"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr +="	@Override"+ lineFeed;
+		entityStr +="	public PageInfo<" + voName + "> findPage(" + dtoName + " dto) {"+ lineFeed;
+		entityStr +="		PageHelper.startPage(dto.getPageNum(), dto.getPageSize());"+ lineFeed;
+		entityStr +="		List<" + voName + "> find = "+firstLowerName+"Repository.find(dto);"+ lineFeed;
+		entityStr +="		PageInfo<" + voName + "> page=new PageInfo<" + voName + ">(find);"+ lineFeed;
+		entityStr +="		return page;"+ lineFeed;
+		entityStr +="	}"+ lineFeed;
+		entityStr +=lineFeed;
+
+		entityStr += "}";
+		return entityStr;
+	}
+
 
 	public static String controllerContent(String tableName, LinkedHashMap<String, String> map,
 			LinkedHashMap<String, String> commentmap) {

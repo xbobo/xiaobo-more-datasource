@@ -38,6 +38,8 @@ public class AppExample3 {
         prop.setRepository_complex_flag(true);
         //sql 模板 是否创建
         prop.setSql_flag(true);
+
+        prop.setServiceSimpleFlag(true);
         //生成    数据库表数组   可不设
         //prop.setExclusive_tables(new String[] {"demo"});
         //生成    数据库表数组   可不设

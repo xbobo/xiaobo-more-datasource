@@ -171,11 +171,20 @@ public class JDBCUtil3 {
 				FileUtil3.createJavaFile("dto"+File.separator+"BaseDTO",
 						FileContentUtil3.basedtoContent(tableName, map, commentmap));
 				//service 生成
-				FileUtil3.createJavaFile("service"+File.separator+entityName + "Service",
-						FileContentUtil3.serviceContent(tableName, map, commentmap));
-				
-				FileUtil3.createJavaFile("service"+File.separator+"impl"+File.separator+entityName + "ServiceImpl",
-						FileContentUtil3.serviceImplContent(tableName, map, commentmap));
+				if(prop.isServiceSimpleFlag()){
+					FileUtil3.createJavaFile("service"+File.separator+entityName + "Service",
+							FileContentUtil3.serviceSimpleContent(tableName, map, commentmap));
+
+					FileUtil3.createJavaFile("service"+File.separator+"impl"+File.separator+entityName + "ServiceImpl",
+							FileContentUtil3.serviceImplSimpleContent(tableName, map, commentmap));
+				}else{
+					FileUtil3.createJavaFile("service"+File.separator+entityName + "ServiceComplex",
+							FileContentUtil3.serviceComplexContent(tableName, map, commentmap));
+
+					FileUtil3.createJavaFile("service"+File.separator+"impl"+File.separator+entityName + "ServiceImplComplex",
+							FileContentUtil3.serviceComplexImplContent(tableName, map, commentmap));
+				}
+
 				//controller 生成
 				FileUtil3.createJavaFile("controller"+File.separator+entityName + "Controller",
 						FileContentUtil3.controllerContent(tableName, map, commentmap));
