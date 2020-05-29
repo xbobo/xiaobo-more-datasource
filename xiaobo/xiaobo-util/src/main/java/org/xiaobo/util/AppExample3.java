@@ -50,14 +50,19 @@ public class AppExample3 {
 //				"order_refund_approval_detail"});
 
         prop.setInclude_tables(new String[]{
-                "product_official_account",
-                "wx_official_account_template",
-                "recommend_product_official_account",
-                "recommend_product_official_wechat",
-                "product_official_account_template",
-                "camp_wx_send_msg_temp",
-                "dict","camp_wx_send_msg_history",
-                "third_part_oauth_info"});
+//                "product_official_account",
+//                "wx_official_account_template",
+//                "recommend_product_official_account",
+//                "recommend_product_official_wechat",
+//                "product_official_account_template",
+//                "camp_wx_send_msg_temp",
+//                "dict","camp_wx_send_msg_history",
+//                "third_part_oauth_info"
+//                "user"
+//                 "camp_invite","camp_withdrawal_introduce","camp_withdrawal_infos",
+//                 "camp_invite_unionid","camp_inviter_invitee_unionid","camp_ins_sta_rank_unionid"
+                "warehousing"
+        });
 
         System.out.println("连接数据库wei:" + prop.getLibrary());
 

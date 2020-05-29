@@ -658,19 +658,37 @@ public class FileContentUtil3 {
 		
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public int save(" + dtoName + " dto) {"+ lineFeed;
-		entityStr +="		return "+firstLowerName+"Repository.save(dto);"+ lineFeed;
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			long currentTime=System.currentTimeMillis()/1000;"+ lineFeed;
+		entityStr +="			dto.setCreateTime(currentTime);"+ lineFeed;
+		entityStr +="			dto.setModifyTime(currentTime);"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.save(dto);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+
+		entityStr +="		return 0;"+ lineFeed;
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;
 		
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public int update(" + dtoName + " dto) {"+ lineFeed;
-		entityStr +="		return "+firstLowerName+"Repository.update(dto);"+ lineFeed;
+
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			dto.setModifyTime(System.currentTimeMillis()/1000);"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.update(dto);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+
+		entityStr +="		return  0;"+ lineFeed;
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;		 
 
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public int remove(" + dtoName + " dto) {"+ lineFeed;
-		entityStr +="		return "+firstLowerName+"Repository.remove(dto);"+ lineFeed;
+
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.remove(dto);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+		entityStr +="		return  0;"+ lineFeed;
+
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;	
 		
@@ -680,8 +698,10 @@ public class FileContentUtil3 {
 		entityStr +="		if (dto != null) {"+ lineFeed;
 		entityStr +="			dto.setPageNum(null);"+ lineFeed;
 		entityStr +="			dto.setPageSize(null);"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"Repository.find(dto);"+ lineFeed;
 		entityStr +="		}"+ lineFeed;
-		entityStr +="		return "+firstLowerName+"Repository.find(dto);"+ lineFeed;
+
+		entityStr +="		return null;"+ lineFeed;
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;
 
@@ -696,19 +716,30 @@ public class FileContentUtil3 {
 		
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public int removeBatch(" + dtoName + " dto) {"+ lineFeed;
-		entityStr +="		return "+firstLowerName+"RepositoryComplex.removeBatch(dto.getIds());"+ lineFeed;
+		entityStr +="		if (dto != null) {"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"RepositoryComplex.removeBatch(dto.getIds());"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+		entityStr +="		return  0;"+ lineFeed;
+
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;	
 
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public int updateBatch(List<" + dtoName + "> list) {"+ lineFeed;
-		entityStr +="		return "+firstLowerName+"RepositoryComplex.updateBatch(list);"+ lineFeed;
+		entityStr +="		if (list != null && list.size() > 0) {"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"RepositoryComplex.updateBatch(list);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+		entityStr +="		return  0;"+ lineFeed;
+
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;
 		
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public int saveBatch(List<" + dtoName + "> list) {"+ lineFeed;
-		entityStr +="		return "+firstLowerName+"RepositoryComplex.saveBatch(list);"+ lineFeed;
+		entityStr +="		if (list != null && list.size() > 0) {"+ lineFeed;
+		entityStr +="			return "+firstLowerName+"RepositoryComplex.saveBatch(list);"+ lineFeed;
+		entityStr +="		}"+ lineFeed;
+		entityStr +="		return  0;"+ lineFeed;
 		entityStr +="	}"+ lineFeed;
 		entityStr +=lineFeed;
 		

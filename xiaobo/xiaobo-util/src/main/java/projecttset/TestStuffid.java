@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import io.jsonwebtoken.Claims;
+import org.apache.commons.lang3.time.StopWatch;
 
 import static java.lang.Long.parseLong;
 
@@ -17,7 +19,7 @@ public class TestStuffid {
     static Integer expiresSecond = 2592000;
     static String salt = "0oFt5SX4ONB6wPICwn";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws  Exception {
 
         String[] arr = {"ERP", "MMS"};
         List<String> strList = new ArrayList<String>();
@@ -47,7 +49,7 @@ public class TestStuffid {
         userVO.setUserId(39321190226239488L);
 
         //userVO.setUserId(41540177244758016L);
-        //userVO.setUserId(19027299879133185L);
+        userVO.setUserId(19027299879133185L);
 
         userVO.setUserMobile("13381200177");
         userVO.setUserMobile("13261462623");
@@ -67,7 +69,7 @@ public class TestStuffid {
         final String authHeader = "bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi55u855u8IiwidXNlcmlkIjoiNDg3MzUyMTg5Mzc2Njc1ODQiLCJkbnNOaWNrTmFtZSI6WyJFUlAiLCJNTVMiXSwibW9iaWxlIjoiMTg1MTM1ODA2ODQiLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.NAnJiLJKbg-KtEE3Z4IwudEJnNjleQEOEzxBv52XBoo";
         final String authHeader1 = "bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5p2o5pmoIiwidXNlcmlkIjoiNTM5MjA0Njk5MjIxMjc4NzIiLCJkbnNOaWNrTmFtZSI6WyJFUlAiLCJNTVMiXSwibW9iaWxlIjoiMTUxNDAxMDQ1OTgiLCJsb2dpbl90aW1lIjoxNTU5MTI4MTEzODczLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.n0l0DvKYGhLoVAXCM2Pua_9AmvXabEZukNVErzgf5P0";
         final String testHead = "bearer;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoi5rWL6K-V6ams6I65IiwidXNlcmlkIjoiMzkwODcwNzQxMDA2ODI3NTIiLCJpc3MiOiJyZXN0YXBpdXNlciIsImF1ZCI6IjA5OGY2YmNkNDYyMWQzNzNjMjEzNGU4MzI2MjdiNGY2In0.Bx3f_8LwhbK1bxGkWDsrwuZu5GizESgLDuFhBxmousU";
-         final String token = testHead.substring(7);
+        final String token = testHead.substring(7);
 
         final Claims claims = JwtUtil.parseJWT(token, base64Secret);
         //dnsNickName=[ERP, MMS]
@@ -95,10 +97,14 @@ public class TestStuffid {
 //	    "year" : 2019,
 //        "grade_mode" : "09,08,07",
 //        "quarter_mode" : "C",
-//        "subject_mode" : "Y,S,E",
+//        "subject_mode" : "Y,S,E😏",
 //        "course_mode" : "C",
 //        "buy_start_time" : NumberLong(1551270038),
 //        "buy_end_time" : NumberLong(1564416000)
+        System.out.printf(System.currentTimeMillis()+"---1===");
+        StopWatch stopwatch = StopWatch.createStarted();
+        stopwatch.stop();
+        System.out.printf(stopwatch.getTime(TimeUnit.MILLISECONDS)+"----3===");
 
         String encrypt = Utils.getEncrypt(salt, "123456");
         System.out.println(encrypt);
