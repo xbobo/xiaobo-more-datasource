@@ -1,5 +1,7 @@
 package bitset;
 
+import org.xiaobo.util.SnowflakeIdWorker;
+
 import java.util.Stack;
 import java.util.UUID;
 
@@ -78,10 +80,10 @@ public class Test10or62 {
         public static void main(String[] args) {
             // TODO Auto-generated method stub
             UUID uuid = UUID.randomUUID();
+            long id = SnowflakeIdWorker.getId();
+            System.out.println("1110000-----"+uuid.toString());
 
-            System.out.printf("1110000-----"+uuid.toString());
-
-            System.out.println("62System=" +_10_to_62(Integer.parseInt("35174605"), 6));
+            System.out.println("62System=" +_10_to_62(id, 5));
             System.out.println("10System=" +convertBase62ToDecimal("0002NaWL"));
         }
 
