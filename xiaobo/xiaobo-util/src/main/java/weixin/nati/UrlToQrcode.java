@@ -40,9 +40,9 @@ public class UrlToQrcode {
 
 ok 这样就可以直接使用我们传过去的base64 进行图片展示了
 
-记得要我们传回去的参数前面加上 
+记得要我们传回去的参数前面加上
 
- data:image/png;base64,  
+data:image/png;base64,
 	 * @param codeUrl
 	 * @return
 	 */

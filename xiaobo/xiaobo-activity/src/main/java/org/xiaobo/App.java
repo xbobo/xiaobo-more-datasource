@@ -8,9 +8,9 @@
 //
 ///**
 // * Hello world!
-// *   (1) @ComponentScan(basePackages = "xxx.xxx.xxx")：扫描 @Controller、@Service 注解；
-//    (2) @EnableJpaRepositories(basePackages = "xxx.xxx.xxx")：扫描 @Repository 注解；
-//    (3) @EntityScan(basePackages = "xxx.xxx.xxx")：扫描 @Entity 注解；
+// *(1) @ComponentScan(basePackages = "xxx.xxx.xxx")：扫描 @Controller、@Service 注解；
+//(2) @EnableJpaRepositories(basePackages = "xxx.xxx.xxx")：扫描 @Repository 注解；
+//(3) @EntityScan(basePackages ="xxx.xxx.xxx")：扫描 @Entity 注解；
 //--------------------- 
 //作者：卧龙腾飞 
 //来源：CSDN 

@@ -63,7 +63,8 @@ public class AppExample3 {
 //                "user"
 //                 "camp_invite","camp_withdrawal_introduce","camp_withdrawal_infos",
 //                 "camp_invite_unionid","camp_inviter_invitee_unionid","camp_ins_sta_rank_unionid"
-                "warehousing"
+//                "order_sale_livecode"
+                "camp_invite_unionid","camp_inviter_invitee_unionid","camp_withdrawal_introduce","order_sale_livecode"
 
         });
 

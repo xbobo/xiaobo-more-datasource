@@ -4,42 +4,42 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 <!-- java -jar mybatis-generator-core-1.3.5.jar -configfile generatorConfig.xml -overwrite -->
-	    <!--数据库驱动 -->
-    <classPathEntry   location="mysql-connector-java-5.1.38.jar"/>
-    <context   id="DB2Tables"   targetRuntime="MyBatis3">
+	<!--数据库驱动 -->
+    <classPathEntry  location="mysql-connector-java-5.1.38.jar"/>
+    <context  id="DB2Tables"  targetRuntime="MyBatis3">
 		<commentGenerator>
-			<property   name="suppressDate"   value="true" />
-			<property   name="suppressAllComments"   value="true" />
+			<property  name="suppressDate"  value="true" />
+			<property  name="suppressAllComments"  value="true" />
 		</commentGenerator>
-		        <!--数据库链接地址账号密码 -->
-		<jdbcConnection   driverClass="com.mysql.jdbc.Driver"  
-			connectionURL="jdbc:mysql://localhost/test"   userId="root"  
+		<!--数据库链接地址账号密码 -->
+		<jdbcConnection  driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost/test"  userId="root"
 			password="123qwe">
-			        </jdbcConnection>
+			</jdbcConnection>
 		<javaTypeResolver>
-			<property   name="forceBigDecimals"   value="false" />
-			        
+			<property  name="forceBigDecimals"  value="false" />
+
 		</javaTypeResolver>
-		        <!--生成Model类存放位置 -->
-		<javaModelGenerator   targetPackage="lcw.model"  
+		<!--生成Model类存放位置 -->
+		<javaModelGenerator  targetPackage="lcw.model"
 			targetProject="src">
-			<property   name="enableSubPackages"   value="true" />
-			<property   name="trimStrings"   value="true" />
+			<property  name="enableSubPackages"  value="true" />
+			<property  name="trimStrings"  value="true" />
 		</javaModelGenerator>
-		        <!--生成映射文件存放位置 -->
-		<sqlMapGenerator   targetPackage="lcw.mapping"  
+		<!--生成映射文件存放位置 -->
+		<sqlMapGenerator  targetPackage="lcw.mapping"
 			targetProject="src">
-			<property   name="enableSubPackages"   value="true" />
+			<property  name="enableSubPackages"  value="true" />
 		</sqlMapGenerator>
-		        <!--生成Dao类存放位置 -->
-		<javaClientGenerator   type="XMLMAPPER"  
-			targetPackage="lcw.dao"   targetProject="src">
-			<property   name="enableSubPackages"   value="true" />
+		<!--生成Dao类存放位置 -->
+		<javaClientGenerator  type="XMLMAPPER"
+			targetPackage="lcw.dao"  targetProject="src">
+			<property  name="enableSubPackages"  value="true" />
 		</javaClientGenerator>
-		        <!--生成对应表及类名 -->
-		<table   tableName="t_person"   domainObjectName="Person"  
-			enableCountByExample="false"   enableUpdateByExample="false"  
-			enableDeleteByExample="false"   enableSelectByExample="false"  
+		<!--生成对应表及类名 -->
+		<table  tableName="t_person"  domainObjectName="Person"
+			enableCountByExample="false"  enableUpdateByExample="false"
+			enableDeleteByExample="false"  enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
 	</context>
 </generatorConfiguration>

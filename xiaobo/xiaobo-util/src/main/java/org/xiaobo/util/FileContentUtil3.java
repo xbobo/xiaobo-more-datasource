@@ -688,10 +688,6 @@ public class FileContentUtil3 {
 		entityStr +="	" + fileStart + "Repository "+firstLowerName+"Repository;"+ lineFeed;
 		entityStr +=lineFeed;
 		
-		entityStr +="	@Autowired"+ lineFeed;
-		entityStr +="	" + fileStart + "RepositoryComplex "+firstLowerName+"RepositoryComplex;"+ lineFeed;
-		entityStr +=lineFeed;
-		
 		entityStr +="	@Override"+ lineFeed;
 		entityStr +="	public int save(" + dtoName + " dto) {"+ lineFeed;
 		entityStr +="		if (dto != null) {"+ lineFeed;
